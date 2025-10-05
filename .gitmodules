@@ -1,0 +1,3 @@
+[submodule "RuiEngine/vendor/spdlog"]
+	path = RuiEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog

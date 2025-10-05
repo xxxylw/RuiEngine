@@ -2,7 +2,7 @@
 
 // For only use by RuiEngine Applications
 
-#include <stdio.h>
+#include "RuiEngine/Log.h"
 #include "RuiEngine/Application.h"
 
 // ------Entry Point------
