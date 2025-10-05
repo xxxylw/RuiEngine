@@ -4,6 +4,9 @@
     <Filter Include="RuiEngine">
       <UniqueIdentifier>{0BB6A677-7720-5BEE-C05E-0C942C083943}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RuiEngine\Events">
+      <UniqueIdentifier>{8FC78760-7BC0-A6B2-A4F2-8B37904A86BE}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RuiEngine.h" />
@@ -16,9 +19,22 @@
     <ClInclude Include="src\RuiEngine\EntryPoint.h">
       <Filter>RuiEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\RuiEngine\Events\ApplicationEvent.h">
+      <Filter>RuiEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Events\Event.h">
+      <Filter>RuiEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Events\KeyEvent.h">
+      <Filter>RuiEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Events\MouseEvent.h">
+      <Filter>RuiEngine\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\RuiEngine\Log.h">
       <Filter>RuiEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\repch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RuiEngine\Application.cpp">
@@ -27,5 +43,6 @@
     <ClCompile Include="src\RuiEngine\Log.cpp">
       <Filter>RuiEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\repch.cpp" />
   </ItemGroup>
 </Project>
