@@ -11,6 +11,11 @@ workspace "RuiEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "RuiEngine/vendor/GLFW/include"
+
+include "RuiEngine/vendor/GLFW"
+
 project "RuiEngine"
 	
 	location "RuiEngine"
@@ -32,7 +37,14 @@ project "RuiEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

@@ -7,6 +7,12 @@
     <Filter Include="RuiEngine\Events">
       <UniqueIdentifier>{8FC78760-7BC0-A6B2-A4F2-8B37904A86BE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RuiEngine\Platform">
+      <UniqueIdentifier>{BFEEB5BD-ABD2-7613-1433-716600366195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RuiEngine\Platform\Windows">
+      <UniqueIdentifier>{F9E7A9C2-E5F7-5593-4EB1-BAB13AE0442C}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RuiEngine.h" />
@@ -34,6 +40,12 @@
     <ClInclude Include="src\RuiEngine\Log.h">
       <Filter>RuiEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsWindow.h">
+      <Filter>RuiEngine\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Window.h">
+      <Filter>RuiEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\repch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Log.cpp">
       <Filter>RuiEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsWindow.cpp">
+      <Filter>RuiEngine\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\repch.cpp" />
   </ItemGroup>

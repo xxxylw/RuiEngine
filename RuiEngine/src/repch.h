@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "RuiEngine/Log.h"
+
 
 #ifdef RE_PLATFORM_WINDOWS
 	#include <Windows.h>
