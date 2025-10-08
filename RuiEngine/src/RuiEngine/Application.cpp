@@ -1,9 +1,8 @@
 #include "repch.h"
 #include "Application.h"
 //#include "RuiEngine/Log.h"
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
-#include "Events/KeyEvent.h"
 
 namespace RuiEngine {
 
@@ -13,10 +12,23 @@ namespace RuiEngine {
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		unsigned int id;
+		glGenVertexArrays(1, &id);
 	}
 
 	Application::~Application()
 	{
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
 	}
 
 	// Handle all events in this func
@@ -24,9 +36,13 @@ namespace RuiEngine {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-
-		if(e.GetEventType() == KeyPressedEvent::GetStaticType())
-			RE_CORE_TRACE("{0}", e.ToString());
+		
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)
+				break;
+		}
 	}
 
 	void Application::Run()
@@ -35,6 +51,11 @@ namespace RuiEngine {
 		{
 			glClearColor(1.0f, 0.76f, 0.23f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
 			m_Window->OnUpdate();
 		}
 	}

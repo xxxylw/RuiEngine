@@ -34,6 +34,12 @@
     <ClInclude Include="src\RuiEngine\Events\KeyEvent.h">
       <Filter>RuiEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\RuiEngine\Events\Layer.h">
+      <Filter>RuiEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Events\LayerStack.h">
+      <Filter>RuiEngine\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\RuiEngine\Events\MouseEvent.h">
       <Filter>RuiEngine\Events</Filter>
     </ClInclude>
@@ -51,6 +57,12 @@
   <ItemGroup>
     <ClCompile Include="src\RuiEngine\Application.cpp">
       <Filter>RuiEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Events\Layer.cpp">
+      <Filter>RuiEngine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Events\LayerStack.cpp">
+      <Filter>RuiEngine\Events</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Log.cpp">
       <Filter>RuiEngine</Filter>

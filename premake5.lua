@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "RuiEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "RuiEngine/vendor/Glad/include"
 
 include "RuiEngine/vendor/GLFW"
+include "RuiEngine/vendor/Glad"
 
 project "RuiEngine"
 	
@@ -38,12 +40,14 @@ project "RuiEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -56,7 +60,8 @@ project "RuiEngine"
 		defines 
 		{
 			"RE_PLATFORM_WINDOWS",
-			"RE_BUILD_DLL"
+			"RE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -66,14 +71,17 @@ project "RuiEngine"
 
 	filter "configurations:Debug"
 		defines "RE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "RE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "RE_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -114,12 +122,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "RE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "RE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "RE_DIST"
+		buildoptions "/MD"
 		optimize "On"
