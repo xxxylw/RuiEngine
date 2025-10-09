@@ -18,7 +18,6 @@ public:
 	void OnEvent(RuiEngine::Event& event) override
 	{
 		RE_TRACE("ExampleLayer::OnEvent  {0}", event.ToString());
-		event.Handled = true;
 	}
 };
 
