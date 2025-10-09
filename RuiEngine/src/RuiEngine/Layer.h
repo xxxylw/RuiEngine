@@ -12,7 +12,7 @@ namespace RuiEngine {
 		virtual ~Layer();
 
 		virtual void OnAttach() {}
-		virtual void OnDelete() {}
+		virtual void OnDetach() {}
 		virtual void OnUpdate() {}
 		virtual void OnEvent(Event& event) {}
 

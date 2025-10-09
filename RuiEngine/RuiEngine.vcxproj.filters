@@ -34,10 +34,10 @@
     <ClInclude Include="src\RuiEngine\Events\KeyEvent.h">
       <Filter>RuiEngine\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Events\Layer.h">
+    <ClInclude Include="src\RuiEngine\Layer.h">
       <Filter>RuiEngine\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Events\LayerStack.h">
+    <ClInclude Include="src\RuiEngine\LayerStack.h">
       <Filter>RuiEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Events\MouseEvent.h">
@@ -53,15 +53,17 @@
       <Filter>RuiEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\repch.h" />
+    <ClInclude Include="src\RuiEngine\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RuiEngine\Application.cpp">
       <Filter>RuiEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Events\Layer.cpp">
+    <ClCompile Include="src\RuiEngine\Layer.cpp">
       <Filter>RuiEngine\Events</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Events\LayerStack.cpp">
+    <ClCompile Include="src\RuiEngine\LayerStack.cpp">
       <Filter>RuiEngine\Events</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Log.cpp">
@@ -71,5 +73,7 @@
       <Filter>RuiEngine\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\repch.cpp" />
+    <ClCompile Include="src\RuiEngine\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

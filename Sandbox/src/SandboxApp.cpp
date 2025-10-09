@@ -26,6 +26,7 @@ class Sandbox : public RuiEngine::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new RuiEngine::ImGuiLayer());
 	}
 
 	~Sandbox() {
