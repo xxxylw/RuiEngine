@@ -11,6 +11,11 @@
 	#error RuiEngine only supports Windows!
 #endif
 
+#ifdef RE_DEBUF
+	#define RE_ENABLE_ASSERTS
+#endif // RE_DEBUF
+
+
 #ifdef RE_ENABLE_ASSERTS
 	#define RE_ASSERT(x, ...) {if(!(x))\
 		{RE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
