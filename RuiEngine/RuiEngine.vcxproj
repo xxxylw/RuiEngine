@@ -161,10 +161,14 @@
     <ClInclude Include="src\RuiEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\RuiEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\RuiEngine\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\RuiEngine\Input.h" />
+    <ClInclude Include="src\RuiEngine\KeyCode.h" />
     <ClInclude Include="src\RuiEngine\Layer.h" />
     <ClInclude Include="src\RuiEngine\LayerStack.h" />
     <ClInclude Include="src\RuiEngine\Log.h" />
+    <ClInclude Include="src\RuiEngine\MouseButtonCode.h" />
     <ClInclude Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\RuiEngine\Window.h" />
     <ClInclude Include="src\repch.h" />
@@ -176,6 +180,7 @@
     <ClCompile Include="src\RuiEngine\LayerStack.cpp" />
     <ClCompile Include="src\RuiEngine\Log.cpp" />
     <ClCompile Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\repch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

@@ -3,8 +3,6 @@
 #include "RuiEngine/Core.h"
 #include "Layer.h"
 
-#include <vector>
-
 namespace RuiEngine {
 
 	class RE_API LayerStack

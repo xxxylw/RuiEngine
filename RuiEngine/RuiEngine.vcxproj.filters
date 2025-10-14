@@ -65,6 +65,10 @@
       <Filter>RuiEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\repch.h" />
+    <ClInclude Include="src\RuiEngine\Input.h" />
+    <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\RuiEngine\KeyCode.h" />
+    <ClInclude Include="src\RuiEngine\MouseButtonCode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RuiEngine\Application.cpp">
@@ -89,5 +93,6 @@
       <Filter>RuiEngine\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\repch.cpp" />
+    <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>
