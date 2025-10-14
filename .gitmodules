@@ -7,3 +7,6 @@
 [submodule "RuiEngine/vendor/imgui"]
 	path = RuiEngine/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "RuiEngine/vendor/glm"]
+	path = RuiEngine/vendor/glm
+	url = https://github.com/g-truc/glm

@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "RuiEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "RuiEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "RuiEngine/vendor/imgui"
+IncludeDir["glm"] = "RuiEngine/vendor/glm"
 
 include "RuiEngine/vendor/GLFW"
 include "RuiEngine/vendor/Glad"
@@ -37,7 +38,9 @@ project "RuiEngine"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -46,7 +49,8 @@ project "RuiEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -62,7 +66,7 @@ project "RuiEngine"
 		systemversion "latest"
 		buildoptions {"/utf-8"}
 
-		defines 
+		defines
 		{
 			"RE_PLATFORM_WINDOWS",
 			"RE_BUILD_DLL",
@@ -107,7 +111,8 @@ project "Sandbox"
 	includedirs
 	{
 		"RuiEngine/vendor/spdlog/include",
-		"RuiEngine/src"
+		"RuiEngine/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -120,7 +125,7 @@ project "Sandbox"
 		systemversion "latest"
 		buildoptions {"/utf-8"}
 
-		defines 
+		defines
 		{
 			"RE_PLATFORM_WINDOWS"
 		}
