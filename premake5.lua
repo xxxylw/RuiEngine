@@ -112,6 +112,7 @@ project "Sandbox"
 	{
 		"RuiEngine/vendor/spdlog/include",
 		"RuiEngine/src",
+		"RuiEngine/vendor",
 		"%{IncludeDir.glm}"
 	}
 

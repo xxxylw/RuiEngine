@@ -6,6 +6,8 @@
 #include "RuiEngine/Events/ApplicationEvent.h"
 #include "RuiEngine/LayerStack.h"
 
+#include "RuiEngine/ImGui/ImGuiLayer.h"
+
 namespace RuiEngine {
 
 	class RE_API Application
@@ -28,6 +30,8 @@ namespace RuiEngine {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

@@ -167,9 +167,8 @@
     <ClInclude Include="src\RuiEngine\LayerStack.h" />
     <ClInclude Include="src\RuiEngine\Log.h" />
     <ClInclude Include="src\RuiEngine\MouseButtonCode.h" />
-    <ClInclude Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\RuiEngine\Window.h" />
     <ClInclude Include="src\repch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -595,13 +594,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RuiEngine\Application.cpp" />
+    <ClCompile Include="src\RuiEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\RuiEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\RuiEngine\Layer.cpp" />
     <ClCompile Include="src\RuiEngine\LayerStack.cpp" />
     <ClCompile Include="src\RuiEngine\Log.cpp" />
-    <ClCompile Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
-    <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\repch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

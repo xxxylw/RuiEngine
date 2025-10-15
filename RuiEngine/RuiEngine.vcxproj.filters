@@ -90,9 +90,6 @@
     <ClInclude Include="src\RuiEngine\MouseButtonCode.h">
       <Filter>src\RuiEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>src\RuiEngine\Platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\RuiEngine\Platform\Windows\WindowsInput.h">
       <Filter>src\RuiEngine\Platform\Windows</Filter>
     </ClInclude>
@@ -1382,9 +1379,6 @@
     <ClCompile Include="src\RuiEngine\Log.cpp">
       <Filter>src\RuiEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>src\RuiEngine\Platform\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="src\RuiEngine\Platform\Windows\WindowsInput.cpp">
       <Filter>src\RuiEngine\Platform\Windows</Filter>
     </ClCompile>
@@ -1394,5 +1388,6 @@
     <ClCompile Include="src\repch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\RuiEngine\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>

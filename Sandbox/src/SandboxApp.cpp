@@ -5,6 +5,8 @@
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "imgui/imgui.h"
+
 glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
 {
 	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
@@ -35,10 +37,16 @@ public:
 		//RE_TRACE("ExampleLayer::OnEvent  {0}", event.ToString());
 		if (event.GetEventType() == RuiEngine::EventType::KeyPressed)
 		{
-
 			RuiEngine::KeyPressedEvent& e = (RuiEngine::KeyPressedEvent&)event;
 			RE_TRACE("{0}", (char)e.GetKeyCode());
 		}
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		//ImGui::Begin();
+		//ImGui::Text("Hello World");
+		//ImGui::End();
 	}
 };
 
@@ -46,7 +54,6 @@ class Sandbox : public RuiEngine::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
-		PushOverlay(new RuiEngine::ImGuiLayer());
 	}
 
 	~Sandbox() {
