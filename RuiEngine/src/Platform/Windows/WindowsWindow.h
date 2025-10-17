@@ -3,6 +3,7 @@
 #include "RuiEngine/Window.h"
 
 #include "GLFW/glfw3.h"
+#include "RuiEngine/Renderer/GraphicsContext.h"
 
 namespace RuiEngine{
 	
@@ -30,6 +31,7 @@ namespace RuiEngine{
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
