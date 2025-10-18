@@ -1362,6 +1362,9 @@
     <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\RuiEngine\Renderer\Buffer.h" />
+    <ClInclude Include="src\RuiEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1393,5 +1396,8 @@
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\RuiEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
   </ItemGroup>
 </Project>
