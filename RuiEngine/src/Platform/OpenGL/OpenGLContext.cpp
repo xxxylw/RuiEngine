@@ -19,9 +19,9 @@ namespace RuiEngine {
 		RE_CORE_ASSERT(status, "Failed to initialize Glad !");
 
 		RE_CORE_INFO("OpenGL Info:");
-		RE_CORE_INFO("	Vendor:	{0}", reinterpret_cast<const char>(glGetString(GL_VENDOR)));
-		RE_CORE_INFO("	Renderer:	{0}", reinterpret_cast<const char>(glGetString(GL_RENDERER)));
-		RE_CORE_INFO("	Version:	{0}", reinterpret_cast<const char>(glGetString(GL_VERSION)));
+		RE_CORE_INFO("	Vendor:		{0}", reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
+		RE_CORE_INFO("	Renderer:	{0}", reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+		RE_CORE_INFO("	Version:	{0}", reinterpret_cast<const char*>(glGetString(GL_VERSION)));
 	}
 
 	void OpenGLContext::SwapBuffers()

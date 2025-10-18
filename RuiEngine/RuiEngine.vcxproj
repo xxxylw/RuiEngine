@@ -162,6 +162,7 @@
     <ClInclude Include="src\RuiEngine\Log.h" />
     <ClInclude Include="src\RuiEngine\MouseButtonCode.h" />
     <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\RuiEngine\Renderer\Shader.h" />
     <ClInclude Include="src\RuiEngine\Window.h" />
     <ClInclude Include="src\repch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -598,6 +599,7 @@
     <ClCompile Include="src\repch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
