@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\RuiEngine.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\RuiEngine\Renderer\VertexArray.h" />
     <ClInclude Include="src\RuiEngine\Window.h" />
     <ClInclude Include="src\repch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -592,6 +594,7 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\RuiEngine\Application.cpp" />
@@ -606,6 +609,7 @@
     <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\RuiEngine\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
