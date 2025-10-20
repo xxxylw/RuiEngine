@@ -12,9 +12,9 @@ namespace RuiEngine {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:		RE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::None:		RE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
 
-			case RendererAPI::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		RE_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -25,9 +25,9 @@ namespace RuiEngine {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:		RE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::None:		RE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
 
-		case RendererAPI::OpenGL:	return new OpenGLIndexBuffer(indices, count);
+		case RendererAPI::API::OpenGL:	return new OpenGLIndexBuffer(indices, count);
 		}
 
 		RE_CORE_ASSERT(false, "Unknown RendererAPI!");

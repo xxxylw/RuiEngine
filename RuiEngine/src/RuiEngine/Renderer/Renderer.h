@@ -1,19 +1,17 @@
 #pragma once
 
-namespace RuiEngine {
+#include "RuiEngine/Renderer/RenderCommand.h" 
 
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGL = 1
-	};
+namespace RuiEngine {
 
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
+		static void BeginScene();
+		static void EndScene();
 
-	private:
-		static RendererAPI s_RendererAPI;
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	};
 }
