@@ -3,6 +3,8 @@
 #include "RuiEngine/Core.h"
 #include "RuiEngine/Events/Event.h"
 
+#include "RuiEngine/Core/Timestep.h"
+
 namespace RuiEngine {
 	
 	class RE_API Layer
@@ -13,7 +15,7 @@ namespace RuiEngine {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

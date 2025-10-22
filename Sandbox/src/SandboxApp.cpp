@@ -126,22 +126,22 @@ public:
 		/* End Draw */
 	}
 
-	void OnUpdate() override
+	void OnUpdate(RuiEngine::Timestep ts) override
 	{
 		/* polling here*/
 		if (RuiEngine::Input::IsKeyPressed(RE_KEY_A))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_D))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_W))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_S))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
-		if (RuiEngine::Input::IsKeyPressed(RE_KEY_J))
-			m_CameraRotation += m_CameraRotationSpeed;
-		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_L))
-			m_CameraRotation -= m_CameraRotationSpeed;
+		if (RuiEngine::Input::IsKeyPressed(RE_KEY_LEFT))
+			m_CameraRotation += m_CameraRotationSpeed * ts;
+		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_RIGHT))
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		RuiEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RuiEngine::RenderCommand::Clear();
@@ -177,8 +177,8 @@ public:
 
 		RuiEngine::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
-		float m_CameraMoveSpeed = 0.02f;
-
+		float m_CameraMoveSpeed = 1.0f;
+		
 		float m_CameraRotation = 0.0f;
 		float m_CameraRotationSpeed = 180.0f;
 };

@@ -3,6 +3,8 @@
 
 #include "Input.h"
 
+#include <GLFW/glfw3.h>
+
 namespace RuiEngine {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -16,6 +18,7 @@ namespace RuiEngine {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(true);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -53,9 +56,13 @@ namespace RuiEngine {
 	{
 		while (m_Running)
 		{
+			float time = (float)glfwGetTime(); // For Temporary Platform::GetTime()
+			Timestep timestep = time - m_LasetFrameTime;
+			m_LasetFrameTime = time;
+
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 			}
 
 			m_ImGuiLayer->Begin();

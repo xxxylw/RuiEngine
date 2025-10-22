@@ -9,6 +9,8 @@
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
 
+#include "RuiEngine/Core/Timestep.h"
+
 namespace RuiEngine {
 
 	class RE_API Application
@@ -29,13 +31,15 @@ namespace RuiEngine {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
-
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
+		Timestep m_Timestep;
+		float m_LasetFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

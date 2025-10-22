@@ -152,6 +152,7 @@
     <ClInclude Include="src\RuiEngine.h" />
     <ClInclude Include="src\RuiEngine\Application.h" />
     <ClInclude Include="src\RuiEngine\Core.h" />
+    <ClInclude Include="src\RuiEngine\Core\Timestep.h" />
     <ClInclude Include="src\RuiEngine\EntryPoint.h" />
     <ClInclude Include="src\RuiEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\RuiEngine\Events\Event.h" />
