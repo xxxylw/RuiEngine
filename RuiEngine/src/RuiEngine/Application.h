@@ -1,15 +1,13 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Event.h"
+
 #include "Window.h"
-#include "RuiEngine/Events/ApplicationEvent.h"
 #include "RuiEngine/LayerStack.h"
+#include "RuiEngine/Events/Event.h"
+#include "RuiEngine/Events/ApplicationEvent.h"
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
-#include "RuiEngine/Renderer/Shader.h"
-#include "RuiEngine/Renderer/Buffer.h"
-#include "RuiEngine/Renderer/VertexArray.h"
 
 namespace RuiEngine {
 
@@ -38,11 +36,6 @@ namespace RuiEngine {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::unique_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};

@@ -7,39 +7,158 @@
 
 #include "imgui/imgui.h"
 
-glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
-{
-	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -Translate));
-	View = glm::rotate(View, Rotate.y, glm::vec3(-1.0f, 0.0f, 0.0f));
-	View = glm::rotate(View, Rotate.x, glm::vec3(0.0f, 1.0f, 0.0f));
-	glm::mat4 Model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
-	return Projection * View * Model;
-}
-
 class ExampleLayer : public RuiEngine::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example")
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
+		/* Draw RuiEngine first Triangle */
+		m_VertexArray.reset(RuiEngine::VertexArray::Create());
+
+		float vertices[3 * 7] = {
+			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+		};
+
+		std::shared_ptr<RuiEngine::VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(RuiEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
+		RuiEngine::BufferLayout layout = {
+				{ RuiEngine::ShaderDataType::Float3, "a_Position" },
+				{ RuiEngine::ShaderDataType::Float4, "a_Color" }
+		};
+		vertexBuffer->SetLayout(layout);
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
+
+		uint32_t indices[3] = { 0, 1, 2 };
+		std::shared_ptr<RuiEngine::IndexBuffer> indexBuffer;
+		indexBuffer.reset(RuiEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
+
+
+		m_SquareVA.reset(RuiEngine::VertexArray::Create());
+
+		float squareVertices[3 * 4] = {
+			-0.75f, -0.75f, 0.0f,
+			 0.75f, -0.75f, 0.0f,
+			 0.75f,  0.75f, 0.0f,
+			-0.75f,  0.75f, 0.0f
+		};
+
+		std::shared_ptr<RuiEngine::VertexBuffer> squareVB;
+		squareVB.reset(RuiEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB->SetLayout({
+				{ RuiEngine::ShaderDataType::Float3, "a_Position" }
+			}
+		);
+		m_SquareVA->AddVertexBuffer(squareVB);
+
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		std::shared_ptr<RuiEngine::IndexBuffer> squareIB;
+		squareIB.reset(RuiEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		m_SquareVA->SetIndexBuffer(squareIB);
+
+
+		std::string vertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
+
+			uniform mat4 u_ViewProjection;
+			
+			out vec3 v_Position;
+			out vec4 v_Color;
+
+			void main()
+			{
+				v_Position = a_Position;
+				v_Color = a_Color;
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string fragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+			in vec4 v_Color;
+
+			void main(){
+				color = v_Color;
+			}
+		)";
+
+		std::string blueShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+
+			uniform mat4 u_ViewProjection;
+
+			out vec3 v_Position;
+
+			void main()
+			{
+				v_Position = a_Position;
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string blueShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+
+			void main()
+			{
+				color = vec4(0.2, 0.3, 0.8, 1.0);
+			}
+		)";
+
+		m_Shader.reset(new RuiEngine::Shader(vertexSrc, fragmentSrc));
+		m_BlueShader.reset(new RuiEngine::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+		/* End Draw */
 	}
 
 	void OnUpdate() override
 	{
 		/* polling here*/
-		if (RuiEngine::Input::IsKeyPressed(RE_KEY_W))
-			RE_TRACE("w key is pressed!(poll)");
+		if (RuiEngine::Input::IsKeyPressed(RE_KEY_A))
+			m_CameraPosition.x -= m_CameraMoveSpeed;
+		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_D))
+			m_CameraPosition.x += m_CameraMoveSpeed;
+		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_W))
+			m_CameraPosition.y += m_CameraMoveSpeed;
+		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_S))
+			m_CameraPosition.y -= m_CameraMoveSpeed;
+
+		if (RuiEngine::Input::IsKeyPressed(RE_KEY_J))
+			m_CameraRotation += m_CameraRotationSpeed;
+		else if (RuiEngine::Input::IsKeyPressed(RE_KEY_L))
+			m_CameraRotation -= m_CameraRotationSpeed;
+
+		RuiEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		RuiEngine::RenderCommand::Clear();
+
+		m_Camera.SetPosition(m_CameraPosition);
+		m_Camera.SetRotation(m_CameraRotation);
+
+		RuiEngine::Renderer::BeginScene(m_Camera);
+
+		RuiEngine::Renderer::Submit(m_BlueShader, m_SquareVA);
+		RuiEngine::Renderer::Submit(m_Shader, m_VertexArray);
+
+		RuiEngine::Renderer::EndScene();
 	}
 
 	void OnEvent(RuiEngine::Event& event) override
 	{
-		//RE_TRACE("ExampleLayer::OnEvent  {0}", event.ToString());
-		if (event.GetEventType() == RuiEngine::EventType::KeyPressed)
-		{
-			RuiEngine::KeyPressedEvent& e = (RuiEngine::KeyPressedEvent&)event;
-			RE_TRACE("{0}", (char)e.GetKeyCode());
-		}
 	}
 
 	virtual void OnImGuiRender() override
@@ -48,6 +167,20 @@ public:
 		ImGui::Text("Hello World");
 		ImGui::End();
 	}
+
+	private:
+		std::shared_ptr<RuiEngine::Shader> m_Shader;
+		std::shared_ptr<RuiEngine::VertexArray> m_VertexArray;
+		
+		std::shared_ptr<RuiEngine::Shader> m_BlueShader;
+		std::shared_ptr<RuiEngine::VertexArray> m_SquareVA;
+
+		RuiEngine::OrthographicCamera m_Camera;
+		glm::vec3 m_CameraPosition;
+		float m_CameraMoveSpeed = 0.02f;
+
+		float m_CameraRotation = 0.0f;
+		float m_CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox : public RuiEngine::Application {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm/glm.hpp>
+
 namespace RuiEngine {
 
 	class Shader
@@ -10,6 +12,8 @@ namespace RuiEngine {
 
 		void Bind();
 		void UnBind();
+
+		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 
 	private:
 		uint32_t m_RendererId;

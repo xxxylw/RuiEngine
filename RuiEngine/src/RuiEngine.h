@@ -10,6 +10,18 @@
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
 
+// ------Renderer---------
+#include "RuiEngine/Renderer/Renderer.h"
+#include "RuiEngine/Renderer/RenderCommand.h"
+
+#include "RuiEngine/Renderer/Buffer.h"
+#include "RuiEngine/Renderer/Shader.h"
+#include "RuiEngine/Renderer/VertexArray.h"
+
+#include "RuiEngine/Renderer/OrthographicCamera.h"
+
+// -----------------------
+
 // ------Entry Point------
 #include "RuiEngine/EntryPoint.h"
 // -----------------------
