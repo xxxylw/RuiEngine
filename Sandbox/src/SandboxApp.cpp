@@ -22,7 +22,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<RuiEngine::VertexBuffer> vertexBuffer;
+		RuiEngine::Ref<RuiEngine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(RuiEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
 		RuiEngine::BufferLayout layout = {
 				{ RuiEngine::ShaderDataType::Float3, "a_Position" },
@@ -32,7 +32,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<RuiEngine::IndexBuffer> indexBuffer;
+		RuiEngine::Ref<RuiEngine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(RuiEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -46,7 +46,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<RuiEngine::VertexBuffer> squareVB;
+		RuiEngine::Ref<RuiEngine::VertexBuffer> squareVB;
 		squareVB.reset(RuiEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 				{ RuiEngine::ShaderDataType::Float3, "a_Position" }
@@ -55,7 +55,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<RuiEngine::IndexBuffer> squareIB;
+		RuiEngine::Ref<RuiEngine::IndexBuffer> squareIB;
 		squareIB.reset(RuiEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -186,13 +186,13 @@ public:
 		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 	}
-
+	 
 	private:
-		std::shared_ptr<RuiEngine::Shader> m_Shader;
-		std::shared_ptr<RuiEngine::VertexArray> m_VertexArray;
+		RuiEngine::Ref<RuiEngine::Shader> m_Shader;
+		RuiEngine::Ref<RuiEngine::VertexArray> m_VertexArray;
 		
-		std::shared_ptr<RuiEngine::Shader> m_FlatColorShader;
-		std::shared_ptr<RuiEngine::VertexArray> m_SquareVA;
+		RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader;
+		RuiEngine::Ref<RuiEngine::VertexArray> m_SquareVA;
 
 		RuiEngine::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
