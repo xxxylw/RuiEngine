@@ -20,6 +20,7 @@
 
 #include "RuiEngine/Renderer/Buffer.h"
 #include "RuiEngine/Renderer/Shader.h"
+#include "RuiEngine/Renderer/Texture.h"
 #include "RuiEngine/Renderer/VertexArray.h"
 
 #include "RuiEngine/Renderer/OrthographicCamera.h"

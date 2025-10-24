@@ -16,9 +16,9 @@
 	#error RuiEngine only supports Windows!
 #endif
 
-#ifdef RE_DEBUF
+#ifdef RE_DEBUG
 	#define RE_ENABLE_ASSERTS
-#endif // RE_DEBUF
+#endif // RE_DEBUG
 
 
 #ifdef RE_ENABLE_ASSERTS

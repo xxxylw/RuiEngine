@@ -39,17 +39,18 @@ public:
 
 		m_SquareVA.reset(RuiEngine::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		RuiEngine::Ref<RuiEngine::VertexBuffer> squareVB;
 		squareVB.reset(RuiEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-				{ RuiEngine::ShaderDataType::Float3, "a_Position" }
+				{ RuiEngine::ShaderDataType::Float3, "a_Position" },
+				{ RuiEngine::ShaderDataType::Float2, "a_TexCoord" }
 			}
 		);
 		m_SquareVA->AddVertexBuffer(squareVB);
@@ -125,8 +126,47 @@ public:
 			}
 		)";
 
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = vec4(texture(u_Texture, v_TexCoord).rgb, 1.0);
+			}
+		)";
+
 		m_Shader.reset(RuiEngine::Shader::Create(vertexSrc, fragmentSrc));
 		m_FlatColorShader.reset(RuiEngine::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_TextureShader.reset(RuiEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = RuiEngine::Texture2D::Create("assets/textures/fomula1.jpg");
+
+		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 		/* End Draw */
 	}
 
@@ -171,7 +211,11 @@ public:
 			}
 		}
 
-		RuiEngine::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind(0);
+		RuiEngine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		/* Submit Triangle */
+		//RuiEngine::Renderer::Submit(m_Shader, m_VertexArray);
 
 		RuiEngine::Renderer::EndScene();
 	}
@@ -191,8 +235,10 @@ public:
 		RuiEngine::Ref<RuiEngine::Shader> m_Shader;
 		RuiEngine::Ref<RuiEngine::VertexArray> m_VertexArray;
 		
-		RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader;
+		RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader, m_TextureShader;
 		RuiEngine::Ref<RuiEngine::VertexArray> m_SquareVA;
+
+		RuiEngine::Ref<RuiEngine::Texture2D> m_Texture;
 
 		RuiEngine::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;

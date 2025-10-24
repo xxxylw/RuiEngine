@@ -7,17 +7,26 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\RuiEngine">
       <UniqueIdentifier>{E21761B7-4ED8-DCED-1713-266B839221CA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RuiEngine\Core">
+      <UniqueIdentifier>{7A794E35-665D-0F8B-CFBD-09DEBBC0F90C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RuiEngine\Events">
       <UniqueIdentifier>{86D1F4C7-7260-7E91-1B7F-928C07ED8E37}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\RuiEngine\ImGui">
       <UniqueIdentifier>{8C6E88DF-F8CF-65ED-813D-AC9FED9D9CAC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RuiEngine\Renderer">
+      <UniqueIdentifier>{C8596A8F-B453-93E1-9DC0-29F28959F94D}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -40,8 +49,29 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -56,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Core.h">
       <Filter>src\RuiEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\Timestep.h">
+      <Filter>src\RuiEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\EntryPoint.h">
       <Filter>src\RuiEngine</Filter>
@@ -92,6 +125,33 @@
     </ClInclude>
     <ClInclude Include="src\RuiEngine\MouseButtonCode.h">
       <Filter>src\RuiEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\Buffer.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\OrthographicCamera.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\RenderCommand.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\Renderer.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\RendererAPI.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\Shader.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\Texture.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\VertexArray.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Window.h">
       <Filter>src\RuiEngine</Filter>
@@ -1359,22 +1419,29 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\Shader.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\Buffer.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\Renderer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\RuiEngine\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1399,20 +1466,35 @@
     <ClCompile Include="src\RuiEngine\Log.cpp">
       <Filter>src\RuiEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\OrthographicCamera.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\RednerCommand.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Renderer.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\RendererAPI.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Texture.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\VertexArray.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\repch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\RednerCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
