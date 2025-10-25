@@ -155,7 +155,7 @@ public:
 
 			void main()
 			{
-				color = vec4(texture(u_Texture, v_TexCoord).rgb, 1.0);
+				color = texture(u_Texture, v_TexCoord);
 			}
 		)";
 
@@ -164,6 +164,7 @@ public:
 		m_TextureShader.reset(RuiEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = RuiEngine::Texture2D::Create("assets/textures/fomula1.jpg");
+		m_TextureHat = RuiEngine::Texture2D::Create("assets/textures/hat.png");
 
 		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -213,6 +214,8 @@ public:
 
 		m_Texture->Bind(0);
 		RuiEngine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_TextureHat->Bind(0);
+		RuiEngine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.2f, 0.4f, 0)) * glm::scale(glm::mat4(0.4f), glm::vec3(0.4f)));
 
 		/* Submit Triangle */
 		//RuiEngine::Renderer::Submit(m_Shader, m_VertexArray);
@@ -238,7 +241,7 @@ public:
 		RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader, m_TextureShader;
 		RuiEngine::Ref<RuiEngine::VertexArray> m_SquareVA;
 
-		RuiEngine::Ref<RuiEngine::Texture2D> m_Texture;
+		RuiEngine::Ref<RuiEngine::Texture2D> m_Texture, m_TextureHat;
 
 		RuiEngine::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;

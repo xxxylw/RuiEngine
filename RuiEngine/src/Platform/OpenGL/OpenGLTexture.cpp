@@ -29,10 +29,21 @@ namespace RuiEngine {
 		m_Width = width;
 		m_Height = height;
 
-		GLenum format = (channels == 4 ? GL_RGBA : GL_RGB);
+		GLenum internalFormat = 0, dataFormat = 0;
+		if (channels == 4)
+		{
+			internalFormat = GL_RGBA8;
+			dataFormat = GL_RGBA;
+		}
+		else if(channels == 3)
+		{
+			internalFormat = GL_RGB8;
+			dataFormat = GL_RGB;
+		}
+		RE_CORE_ASSERT(internalFormat && dataFormat, "Format not supported!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
-		glTextureStorage2D(m_RendererID, 1, (channels == 4 ? GL_RGBA8 : GL_RGB8), m_Width, m_Height);
+		glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
 
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -44,7 +55,7 @@ namespace RuiEngine {
 			m_RendererID,
 			0, 0, 0,
 			m_Width, m_Height,
-			format, GL_UNSIGNED_BYTE,
+			dataFormat, GL_UNSIGNED_BYTE,
 			data
 		);
 		stbi_image_free(data);

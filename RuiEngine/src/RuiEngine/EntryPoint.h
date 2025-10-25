@@ -7,7 +7,7 @@ extern RuiEngine::Application* RuiEngine::CreateApplication();
 int main(int argc, char** argv) {
 
 	RuiEngine::Log::Init();
-	RE_CORE_ERROR("Initialized Core Log!");
+	RE_CORE_TRACE("Initialized Core Log!");
 
 	auto app = RuiEngine::CreateApplication();
 	app->Run();
