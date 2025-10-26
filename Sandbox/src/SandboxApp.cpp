@@ -126,15 +126,15 @@ public:
 			}
 		)";
 
-		m_Shader.reset(RuiEngine::Shader::Create(vertexSrc, fragmentSrc));
-		m_FlatColorShader.reset(RuiEngine::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
-		m_TextureShader.reset(RuiEngine::Shader::Create("assets/shaders/Texture.glsl"));
+		m_Shader = RuiEngine::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+		m_FlatColorShader = RuiEngine::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = RuiEngine::Texture2D::Create("assets/textures/fomula1.jpg");
 		m_TextureHat = RuiEngine::Texture2D::Create("assets/textures/hat.png");
 
-		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<RuiEngine::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 		/* End Draw */
 	}
 
@@ -179,10 +179,11 @@ public:
 			}
 		}
 
+		RuiEngine::Ref<RuiEngine::Shader> textureShader = m_ShaderLibrary.Get("Texture");
 		m_Texture->Bind(0);
-		RuiEngine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		RuiEngine::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_TextureHat->Bind(0);
-		RuiEngine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.2f, 0.4f, 0)) * glm::scale(glm::mat4(0.4f), glm::vec3(0.4f)));
+		RuiEngine::Renderer::Submit(textureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.2f, 0.4f, 0)) * glm::scale(glm::mat4(0.4f), glm::vec3(0.4f)));
 
 		/* Submit Triangle */
 		//RuiEngine::Renderer::Submit(m_Shader, m_VertexArray);
@@ -202,10 +203,11 @@ public:
 	}
 	 
 	private:
+		RuiEngine::ShaderLibrary m_ShaderLibrary;
 		RuiEngine::Ref<RuiEngine::Shader> m_Shader;
 		RuiEngine::Ref<RuiEngine::VertexArray> m_VertexArray;
 		
-		RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader, m_TextureShader;
+		RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader;
 		RuiEngine::Ref<RuiEngine::VertexArray> m_SquareVA;
 
 		RuiEngine::Ref<RuiEngine::Texture2D> m_Texture, m_TextureHat;
