@@ -31,6 +31,8 @@ namespace RuiEngine {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+
 	private:
 		RuiEngine::Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
@@ -40,6 +42,8 @@ namespace RuiEngine {
 
 		Timestep m_Timestep;
 		float m_LasetFrameTime = 0.0f;
+		bool m_Minimized = false;
+
 	private:
 		static Application* s_Instance;
 	};
