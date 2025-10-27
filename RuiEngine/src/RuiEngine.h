@@ -11,6 +11,7 @@
 #include "RuiEngine/Input.h"
 #include "RuiEngine/KeyCode.h"
 #include "RuiEngine/MouseButtonCode.h"
+#include "RuiEngine/OrthographicCameraController.h"
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
 

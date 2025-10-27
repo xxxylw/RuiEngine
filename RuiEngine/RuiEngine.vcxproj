@@ -171,6 +171,7 @@
     <ClInclude Include="src\RuiEngine\LayerStack.h" />
     <ClInclude Include="src\RuiEngine\Log.h" />
     <ClInclude Include="src\RuiEngine\MouseButtonCode.h" />
+    <ClInclude Include="src\RuiEngine\OrthographicCameraController.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\RuiEngine\Renderer\OrthographicCamera.h" />
@@ -619,6 +620,7 @@
     <ClCompile Include="src\RuiEngine\Layer.cpp" />
     <ClCompile Include="src\RuiEngine\LayerStack.cpp" />
     <ClCompile Include="src\RuiEngine\Log.cpp" />
+    <ClCompile Include="src\RuiEngine\OrthographicCameraController.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\RednerCommand.cpp" />
