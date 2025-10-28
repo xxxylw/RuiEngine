@@ -1,8 +1,8 @@
 #include "repch.h"
 #include "OrthographicCameraController.h"
 
-#include "RuiEngine/Input.h"
-#include "RuiEngine/KeyCode.h"
+#include "RuiEngine/Core/Input.h"
+#include "RuiEngine/Core/KeyCode.h"
 
 namespace RuiEngine {
 

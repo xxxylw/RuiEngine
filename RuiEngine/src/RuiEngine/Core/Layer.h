@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RuiEngine/Core.h"
+#include "RuiEngine/Core/Core.h"
 #include "RuiEngine/Events/Event.h"
 
 #include "RuiEngine/Core/Timestep.h"

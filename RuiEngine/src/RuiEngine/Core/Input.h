@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RuiEngine/Core.h"
+#include "RuiEngine/Core/Core.h"
 
 namespace RuiEngine {
 	class RE_API Input
@@ -38,6 +38,6 @@ namespace RuiEngine {
 		virtual float GetMouseXImpl() = 0;
 		virtual float GetMouseYImpl() = 0;
 	private:
-		static Input* s_Instance;
+		static Scope<Input> s_Instance;
 	};
 }

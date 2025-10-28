@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RuiEngine/Window.h"
+#include "RuiEngine/Core/Window.h"
 
 #include "GLFW/glfw3.h"
 #include "RuiEngine/Renderer/GraphicsContext.h"
@@ -31,7 +31,7 @@ namespace RuiEngine{
 
 	private:
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

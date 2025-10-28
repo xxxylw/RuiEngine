@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RuiEngine/Core.h"
+#include "RuiEngine/Core/Core.h"
 
 namespace RuiEngine{
 	/*

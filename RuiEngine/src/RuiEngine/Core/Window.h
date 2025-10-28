@@ -2,7 +2,7 @@
 
 #include "repch.h"
 
-#include "RuiEngine/Core.h"
+#include "RuiEngine/Core/Core.h"
 #include "RuiEngine/Events/Event.h"
 
 namespace RuiEngine {

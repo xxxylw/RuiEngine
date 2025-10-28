@@ -1,11 +1,11 @@
 #include "repch.h"
 #include "WindowsInput.h"
 
-#include "RuiEngine/Application.h"
+#include "RuiEngine/Core/Application.h"
 #include "GLFW/glfw3.h"
 
 namespace RuiEngine {
-	Input* Input::s_Instance = new WindowsInput();
+	Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
 
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)

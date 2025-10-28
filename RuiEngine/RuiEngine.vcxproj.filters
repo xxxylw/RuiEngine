@@ -81,17 +81,38 @@
     <ClInclude Include="src\RuiEngine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Application.h">
-      <Filter>src\RuiEngine</Filter>
+    <ClInclude Include="src\RuiEngine\Core\Application.h">
+      <Filter>src\RuiEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Core.h">
-      <Filter>src\RuiEngine</Filter>
+    <ClInclude Include="src\RuiEngine\Core\Core.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\EntryPoint.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\Input.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\KeyCode.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\Layer.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\LayerStack.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\Log.h">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Core\MouseButtonCode.h">
+      <Filter>src\RuiEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Core\Timestep.h">
       <Filter>src\RuiEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\EntryPoint.h">
-      <Filter>src\RuiEngine</Filter>
+    <ClInclude Include="src\RuiEngine\Core\Window.h">
+      <Filter>src\RuiEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Events\ApplicationEvent.h">
       <Filter>src\RuiEngine\Events</Filter>
@@ -108,24 +129,6 @@
     <ClInclude Include="src\RuiEngine\ImGui\ImGuiLayer.h">
       <Filter>src\RuiEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Input.h">
-      <Filter>src\RuiEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RuiEngine\KeyCode.h">
-      <Filter>src\RuiEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RuiEngine\Layer.h">
-      <Filter>src\RuiEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RuiEngine\LayerStack.h">
-      <Filter>src\RuiEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RuiEngine\Log.h">
-      <Filter>src\RuiEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RuiEngine\MouseButtonCode.h">
-      <Filter>src\RuiEngine</Filter>
-    </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\Buffer.h">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
@@ -133,6 +136,9 @@
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\OrthographicCamera.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\OrthographicCameraController.h">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\RenderCommand.h">
@@ -152,9 +158,6 @@
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\VertexArray.h">
       <Filter>src\RuiEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RuiEngine\Window.h">
-      <Filter>src\RuiEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\repch.h">
       <Filter>src</Filter>
@@ -1422,7 +1425,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1449,8 +1451,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Application.cpp">
-      <Filter>src\RuiEngine</Filter>
+    <ClCompile Include="src\RuiEngine\Core\Application.cpp">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Core\Layer.cpp">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Core\LayerStack.cpp">
+      <Filter>src\RuiEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Core\Log.cpp">
+      <Filter>src\RuiEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\ImGui\ImGuiBuild.cpp">
       <Filter>src\RuiEngine\ImGui</Filter>
@@ -1458,19 +1469,13 @@
     <ClCompile Include="src\RuiEngine\ImGui\ImGuiLayer.cpp">
       <Filter>src\RuiEngine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Layer.cpp">
-      <Filter>src\RuiEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RuiEngine\LayerStack.cpp">
-      <Filter>src\RuiEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RuiEngine\Log.cpp">
-      <Filter>src\RuiEngine</Filter>
-    </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\OrthographicCamera.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\OrthographicCameraController.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\RednerCommand.cpp">
@@ -1497,6 +1502,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

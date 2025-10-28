@@ -1,7 +1,7 @@
 #pragma once
 
-#include "RuiEngine/Input.h"
-#include "RuiEngine/Core.h"
+#include "RuiEngine/Core/Input.h"
+#include "RuiEngine/Core/Core.h"
 
 namespace RuiEngine {
 	

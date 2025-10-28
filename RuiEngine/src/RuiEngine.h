@@ -2,16 +2,16 @@
 
 // For only use by RuiEngine Applications
 
-#include "RuiEngine/Application.h"
-#include "RuiEngine/Log.h"
-#include "RuiEngine/Layer.h"
+#include "RuiEngine/Core/Application.h"
+#include "RuiEngine/Core/Log.h"
+#include "RuiEngine/Core/Layer.h"
 
 #include "RuiEngine/Core/Timestep.h"
 
-#include "RuiEngine/Input.h"
-#include "RuiEngine/KeyCode.h"
-#include "RuiEngine/MouseButtonCode.h"
-#include "RuiEngine/OrthographicCameraController.h"
+#include "RuiEngine/Core/Input.h"
+#include "RuiEngine/Core/KeyCode.h"
+#include "RuiEngine/Core/MouseButtonCode.h"
+#include "RuiEngine/Renderer/OrthographicCameraController.h"
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
 
@@ -26,8 +26,4 @@
 
 #include "RuiEngine/Renderer/OrthographicCamera.h"
 
-// -----------------------
-
-// ------Entry Point------
-#include "RuiEngine/EntryPoint.h"
 // -----------------------
