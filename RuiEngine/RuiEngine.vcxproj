@@ -178,6 +178,7 @@
     <ClInclude Include="src\RuiEngine\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\RuiEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\RuiEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\RuiEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Shader.h" />
     <ClInclude Include="src\RuiEngine\Renderer\Texture.h" />
@@ -625,6 +626,7 @@
     <ClCompile Include="src\RuiEngine\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\RednerCommand.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\RuiEngine\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Texture.cpp" />

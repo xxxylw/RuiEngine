@@ -17,6 +17,7 @@
 
 // ------Renderer---------
 #include "RuiEngine/Renderer/Renderer.h"
+#include "RuiEngine/Renderer/Renderer2D.h"
 #include "RuiEngine/Renderer/RenderCommand.h"
 
 #include "RuiEngine/Renderer/Buffer.h"
