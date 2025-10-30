@@ -48,6 +48,9 @@ namespace RuiEngine {
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
 		/* AMD 芯片 加这一句，不加的话会报异常， 在glTextureSubImage2D之前 */
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -66,7 +69,7 @@ namespace RuiEngine {
 		glDeleteTextures(1, &m_RendererID);
 	}
 
-	void OpenGLTexture2D::Bind(uint32_t slot = 0) const
+	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
 		glBindTextureUnit(slot, m_RendererID);
 	}
