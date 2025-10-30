@@ -11,8 +11,8 @@ namespace RuiEngine {
 	struct Renderer2DStorage
 	{
 		Ref<VertexArray> QuadVertexArray;
-		Ref<Shader> QuadShader;
 		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DStorage* s_Data;
@@ -41,9 +41,11 @@ namespace RuiEngine {
 		Ref<IndexBuffer> squareIB;
 		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		s_Data->QuadVertexArray->SetIndexBuffer(squareIB);
-
-		s_Data->QuadShader = Shader::Create("assets/shaders/FlatColor.glsl");
 		
+		s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
 		s_Data->TextureShader = Shader::Create("assets/shaders/Texture.glsl");
 		s_Data->TextureShader->SetInt("u_Texture", 0);
 	}
@@ -55,9 +57,6 @@ namespace RuiEngine {
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		s_Data->QuadShader->Bind();
-		s_Data->QuadShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
@@ -77,9 +76,11 @@ namespace RuiEngine {
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* rotation */
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		s_Data->QuadShader->Bind();
-		s_Data->QuadShader->SetFloat4("u_Color", color);
-		s_Data->QuadShader->SetMat4("u_Transform", transform);
+		s_Data->TextureShader->Bind();
+		s_Data->WhiteTexture->Bind();
+
+		s_Data->TextureShader->SetFloat4("u_Color", color);
+		s_Data->TextureShader->SetMat4("u_Transform", transform);
 
 		s_Data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
@@ -96,6 +97,7 @@ namespace RuiEngine {
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
 		s_Data->TextureShader->SetMat4("u_Transform", transform);
 
 		texture->Bind(0);
