@@ -8,7 +8,7 @@
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace RuiEngine {
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
@@ -22,35 +22,45 @@ namespace RuiEngine {
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		RE_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		RE_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		RE_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Titile;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
 		RE_CORE_INFO("Creating window {0} ({1}, {2})", props.Titile, props.Width, props.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
+			RE_PROFILE_SCOPE("glfwInit");
 			// TODO: glfwTerminate on system
 			int success = glfwInit();
 			RE_CORE_ASSERT(success, "Could not intialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 
-			s_GLFWInitialized = true;
+			s_GLFWWindowCount++;
 		}
 		
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, 
-						m_Data.Title.c_str(), nullptr, nullptr);
-
+		{
+			RE_PROFILE_SCOPE("glfwCreateWindow");
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height,
+				m_Data.Title.c_str(), nullptr, nullptr);
+		}
+		
 		/* Set Render Context */
 		m_Context = CreateScope<OpenGLContext>(m_Window);
 		m_Context->Init();
@@ -150,17 +160,23 @@ namespace RuiEngine {
 
 	void WindowsWindow::Shutdown()
 	{
+		RE_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		RE_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		RE_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else
@@ -171,6 +187,8 @@ namespace RuiEngine {
 
 	bool WindowsWindow::IsVSync() const
 	{
+		RE_PROFILE_FUNCTION();
+
 		return m_Data.VSync;
 	}
 }

@@ -1426,6 +1426,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\RuiEngine\Debug\Imstrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">

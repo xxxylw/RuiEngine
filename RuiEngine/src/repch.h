@@ -16,6 +16,8 @@
 
 #include "RuiEngine/Core/Log.h"
 
+#include "RuiEngine/Debug/Imstrumentor.h"
+
 
 #ifdef RE_PLATFORM_WINDOWS
 	#include <Windows.h>

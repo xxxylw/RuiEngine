@@ -10,6 +10,8 @@ namespace RuiEngine {
 
 	void Renderer::Init()
 	{
+		RE_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

@@ -15,6 +15,8 @@ namespace RuiEngine {
 
 	Application::Application()
 	{
+		RE_PROFILE_FUNCTION();
+
 		RE_CORE_ASSERT(!s_Instance, "Application alredy exists!");
 		s_Instance = this;
 
@@ -30,21 +32,28 @@ namespace RuiEngine {
 
 	Application::~Application()
 	{
+		RE_PROFILE_FUNCTION();
 	}
 
 	void Application::PushLayer(Layer* layer)
 	{
+		RE_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		RE_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(overlay);
 	}
 
 	// Handle all events in this func
 	void Application::OnEvent(Event& e)
 	{
+		RE_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -59,24 +68,34 @@ namespace RuiEngine {
 
 	void Application::Run()
 	{
+		RE_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{
+			RE_PROFILE_SCOPE("Run Loop");
+
 			float time = (float)glfwGetTime(); // For Temporary Platform::GetTime()
 			Timestep timestep = time - m_LasetFrameTime;
 			m_LasetFrameTime = time;
 
 			if (!m_Minimized)
 			{
-				for (Layer* layer : m_LayerStack)
 				{
-					layer->OnUpdate(timestep);
+					RE_PROFILE_SCOPE("LayerStack OnUpdate");
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnUpdate(timestep);
+					}
 				}
 			}
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnImGuiRender();
+				RE_PROFILE_SCOPE("LayerStack OnImGuiRender");
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnImGuiRender();
+				}
 			}
 			m_ImGuiLayer->End();
 
@@ -92,6 +111,7 @@ namespace RuiEngine {
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		RE_PROFILE_FUNCTION();
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

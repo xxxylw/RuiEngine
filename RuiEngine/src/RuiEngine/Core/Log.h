@@ -20,6 +20,7 @@ namespace RuiEngine {
 }
 
 // Core log macros
+#define RE_PROFILE 1
 #define RE_CORE_ERROR(...)	::RuiEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define RE_CORE_WARN(...)	::RuiEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define RE_CORE_INFO(...)	::RuiEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
