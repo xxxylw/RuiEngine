@@ -42,7 +42,7 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 		RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, m_SquareColor);
 		RuiEngine::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 1.0f }, { 0.5f, 0.8f, 0.3f, 1.0f });
-		RuiEngine::Renderer2D::DrawQuad({ 1.0f, 1.0f, -0.5f }, { 10.0f, 10.0f }, m_MaxVer);
+		RuiEngine::Renderer2D::DrawRotatedQuad({ 1.0f, 1.0f, -0.5f }, { 10.0f, 10.0f }, glm::radians(45.0f), m_MaxVer);
 		RuiEngine::Renderer::EndScene();
 	}
 
