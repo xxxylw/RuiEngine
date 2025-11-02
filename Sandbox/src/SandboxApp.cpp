@@ -4,20 +4,12 @@
 #include "RuiEngine/Core/EntryPoint.h"
 // -----------------------
 
-#include "Platform/OpenGL/OpenGLShader.h"
-
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include "imgui/imgui.h"
-
-#include "Sandbox2D.h"
+#include "GameLayer.h"
 
 class Sandbox : public RuiEngine::Application {
 public:
 	Sandbox() {
-		//PushLayer(new ExampleLayer());
-		PushLayer(new Sandbox2D());
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox() {
