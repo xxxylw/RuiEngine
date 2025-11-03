@@ -167,7 +167,7 @@
     <ClInclude Include="src\RuiEngine\Core\MouseButtonCode.h" />
     <ClInclude Include="src\RuiEngine\Core\Timestep.h" />
     <ClInclude Include="src\RuiEngine\Core\Window.h" />
-    <ClInclude Include="src\RuiEngine\Debug\Imstrumentor.h" />
+    <ClInclude Include="src\RuiEngine\Debug\Instrumentor.h" />
     <ClInclude Include="src\RuiEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\RuiEngine\Events\Event.h" />
     <ClInclude Include="src\RuiEngine\Events\KeyEvent.h" />

@@ -53,3 +53,5 @@ namespace RuiEngine {
 	}
 }
 
+#define RE_PROFILE 0
+

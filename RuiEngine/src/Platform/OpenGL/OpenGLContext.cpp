@@ -25,6 +25,10 @@ namespace RuiEngine {
 		RE_CORE_INFO("	Renderer:	{0}", reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
 		RE_CORE_INFO("	Version:	{0}", reinterpret_cast<const char*>(glGetString(GL_VERSION)));
 
+		GLint  maxTextureUnit = 0;
+		glGetIntegerv(GL_MAX_TEXTURE_UNITS, &maxTextureUnit);
+		RE_CORE_INFO("	Max Texture Units : {0}", maxTextureUnit);
+
 #ifdef RE_ENABLE_ASSERTS
 		int versionMajor;
 		int versionMinor;

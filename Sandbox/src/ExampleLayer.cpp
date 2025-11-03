@@ -17,8 +17,8 @@ ExampleLayer::ExampleLayer()
 		 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 	};
 
-	RuiEngine::Ref<RuiEngine::VertexBuffer> vertexBuffer;
-	vertexBuffer.reset(RuiEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
+	RuiEngine::Ref<RuiEngine::VertexBuffer> vertexBuffer = 
+		RuiEngine::VertexBuffer::Create(vertices, sizeof(vertices));
 	RuiEngine::BufferLayout layout = {
 			{ RuiEngine::ShaderDataType::Float3, "a_Position" },
 			{ RuiEngine::ShaderDataType::Float4, "a_Color" }
@@ -27,8 +27,8 @@ ExampleLayer::ExampleLayer()
 	m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 	uint32_t indices[3] = { 0, 1, 2 };
-	RuiEngine::Ref<RuiEngine::IndexBuffer> indexBuffer;
-	indexBuffer.reset(RuiEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+	RuiEngine::Ref<RuiEngine::IndexBuffer> indexBuffer = 
+		RuiEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 	m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
@@ -41,8 +41,8 @@ ExampleLayer::ExampleLayer()
 		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 	};
 
-	RuiEngine::Ref<RuiEngine::VertexBuffer> squareVB;
-	squareVB.reset(RuiEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+	RuiEngine::Ref<RuiEngine::VertexBuffer> squareVB = 
+		RuiEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 	squareVB->SetLayout({
 			{ RuiEngine::ShaderDataType::Float3, "a_Position" },
 			{ RuiEngine::ShaderDataType::Float2, "a_TexCoord" }
@@ -51,8 +51,8 @@ ExampleLayer::ExampleLayer()
 	m_SquareVA->AddVertexBuffer(squareVB);
 
 	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-	RuiEngine::Ref<RuiEngine::IndexBuffer> squareIB;
-	squareIB.reset(RuiEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+	RuiEngine::Ref<RuiEngine::IndexBuffer> squareIB = 
+		RuiEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 	m_SquareVA->SetIndexBuffer(squareIB);
 
 
