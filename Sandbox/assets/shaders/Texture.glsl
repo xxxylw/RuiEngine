@@ -16,6 +16,8 @@ out vec2 v_TexCoord;
 out float v_TexIndex;
 out float v_TilingFactor;
 
+out vec4 v_Position;
+
 void main()
 {
 	v_Color = a_Color;
@@ -23,6 +25,8 @@ void main()
 	v_TexIndex = a_TexIndex;
 	v_TilingFactor = a_TilingFactor;
 	gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+
+	v_Position = gl_Position;
 }
 
 #type fragment
@@ -35,7 +39,9 @@ in vec2 v_TexCoord;
 in float v_TexIndex;
 in float v_TilingFactor;
 
-uniform sampler2D u_Textures[32];
+in vec4 v_Position;
+
+uniform sampler2D u_Textures[8];
 
 void main()
 {
