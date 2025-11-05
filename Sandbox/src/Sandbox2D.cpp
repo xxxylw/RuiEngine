@@ -17,14 +17,15 @@ void Sandbox2D::OnAttach()
 	RE_PROFILE_FUNCTION();
 
 	m_MaxVer = RuiEngine::Texture2D::Create("assets/textures/Checkerboard.png");
+	m_SpriteSheet = RuiEngine::Texture2D::Create("assets/game/textures/RPGpack_sheet_2X.png");
 
 	// Init here
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
-	m_Particle.SizeBegin = 0.5f, m_Particle.SizeVariation = 0.3f, m_Particle.SizeEnd = 0.0f;
+	m_Particle.SizeBegin = 0.03f, m_Particle.SizeVariation = 0.02f, m_Particle.SizeEnd = 0.0f;
 	m_Particle.LifeTime = 1.0f;
 	m_Particle.Velocity = { 0.0f, 0.0f };
-	m_Particle.VelocityVariation = { 3.0f, 1.0f };
+	m_Particle.VelocityVariation = { 0.1f, 0.05f };
 	m_Particle.Position = { 0.0f, 0.0f };
 }
 
@@ -47,6 +48,7 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 		RuiEngine::RenderCommand::SetClearColor({ 0.2f, 0.2f, 0.2f, 1 });
 		RuiEngine::RenderCommand::Clear();
 	}
+#if 0
 	{
 		static float rotation = 0.0f;
 		rotation += ts * 50.0f;
@@ -59,20 +61,20 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 			for (float x = -5.0f; x < 5.0f; x += 0.5f)
 			{
 				glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
-				RuiEngine::Renderer2D::DrawQuad({ x, y , -0.05}, { 0.45f, 0.45f }, color);
+				RuiEngine::Renderer2D::DrawQuad({ x, y , -0.05f}, { 0.45f, 0.45f }, color);
 			}
 		}
 		RuiEngine::Renderer2D::EndScene();
 
-
 		RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		RuiEngine::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
-		RuiEngine::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		RuiEngine::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-		RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, m_MaxVer, 10.0f);
-		RuiEngine::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, glm::radians(rotation), m_MaxVer, 20.0f);
+		RuiEngine::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f , 0.01f}, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
+		RuiEngine::Renderer2D::DrawQuad({ -1.0f, 0.0f, 0.02f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+		RuiEngine::Renderer2D::DrawQuad({ 0.5f, -0.5f, 0.03f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+		RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, { 20.0f, 20.0f }, m_MaxVer, 10.0f);
+		RuiEngine::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.05f }, { 1.0f, 1.0f }, glm::radians(rotation), m_MaxVer, 20.0f);
 		RuiEngine::Renderer2D::EndScene();
 	}
+#endif
 
 	if (RuiEngine::Input::IsMouseButtonPressed(RE_MOUSE_BUTTON_LEFT))
 	{
@@ -90,6 +92,10 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 	}
 	m_ParticleSystem.OnUpdate(ts);
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
+
+	RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.3f }, { 0.1f, 0.1f }, m_SpriteSheet, 1.0f);
+	RuiEngine::Renderer2D::EndScene();
 
 }
 

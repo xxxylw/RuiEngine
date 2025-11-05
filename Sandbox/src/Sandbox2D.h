@@ -23,7 +23,9 @@ private:
 	//Temp
 	RuiEngine::Ref<RuiEngine::VertexArray> m_SquareVA;
 	RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader;
+
 	RuiEngine::Ref<RuiEngine::Texture2D> m_MaxVer;
+	RuiEngine::Ref<RuiEngine::Texture2D> m_SpriteSheet;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
