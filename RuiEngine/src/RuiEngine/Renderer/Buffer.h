@@ -53,8 +53,8 @@ namespace RuiEngine {
 				case RuiEngine::ShaderDataType::Float2:		return 2;
 				case RuiEngine::ShaderDataType::Float3:		return 3;
 				case RuiEngine::ShaderDataType::Float4:		return 4;
-				case RuiEngine::ShaderDataType::Mat3:		return 3 * 3;
-				case RuiEngine::ShaderDataType::Mat4:		return 4 * 4;
+				case RuiEngine::ShaderDataType::Mat3:		return 3;//3 * 3;
+				case RuiEngine::ShaderDataType::Mat4:		return 4;//4 * 4;
 				case RuiEngine::ShaderDataType::Int:		return 1;
 				case RuiEngine::ShaderDataType::Int2:		return 2;
 				case RuiEngine::ShaderDataType::Int3:		return 3;
