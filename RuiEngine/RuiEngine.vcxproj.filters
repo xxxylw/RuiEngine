@@ -1427,6 +1427,7 @@
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\RuiEngine\Debug\Instrumentor.h" />
+    <ClInclude Include="src\RuiEngine\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1505,5 +1506,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\RuiEngine\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

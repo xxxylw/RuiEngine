@@ -27,6 +27,10 @@ void Sandbox2D::OnAttach()
 	m_Particle.Velocity = { 0.0f, 0.0f };
 	m_Particle.VelocityVariation = { 0.1f, 0.05f };
 	m_Particle.Position = { 0.0f, 0.0f };
+
+	m_TextureStairs = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 7, 6 }, { 128, 128 });
+	m_TextureBarrel = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8, 2 }, { 128, 128 });
+	m_TextureTree = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, {1, 2});
 }
 
 void Sandbox2D::OnDetach()
@@ -94,7 +98,9 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
 
 	RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.3f }, { 0.1f, 0.1f }, m_SpriteSheet, 1.0f);
+	RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureStairs, 1.0f);
+	RuiEngine::Renderer2D::DrawQuad({ 0.8f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureBarrel, 1.0f);
+	RuiEngine::Renderer2D::DrawQuad({ -0.8f, 1.0f, 0.3f }, { 0.5f, 1.0f }, m_TextureTree, 1.0f);
 	RuiEngine::Renderer2D::EndScene();
 
 }
