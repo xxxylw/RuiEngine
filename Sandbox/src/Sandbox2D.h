@@ -2,6 +2,8 @@
 
 #include "RuiEngine.h"
 
+#include "ParticleSystem.h"
+
 class Sandbox2D : public RuiEngine::Layer
 {
 public:
@@ -24,4 +26,7 @@ private:
 	RuiEngine::Ref<RuiEngine::Texture2D> m_MaxVer;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+	ParticleProps m_Particle;
+	ParticleSystem m_ParticleSystem;
 };
