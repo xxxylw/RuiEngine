@@ -138,6 +138,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ExampleLayer.h" />
+    <ClInclude Include="src\ParticleSystem.h" />
+    <ClInclude Include="src\Sandbox2D.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\ExampleLayer.cpp" />
     <ClCompile Include="src\ParticleSystem.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
@@ -147,11 +152,6 @@
     <ProjectReference Include="..\RuiEngine\RuiEngine.vcxproj">
       <Project>{0BB6A677-7720-5BEE-C05E-0C942C083943}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\ExampleLayer.h" />
-    <ClInclude Include="src\ParticleSystem.h" />
-    <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

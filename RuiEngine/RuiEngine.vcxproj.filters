@@ -19,6 +19,9 @@
     <Filter Include="src\RuiEngine\Core">
       <UniqueIdentifier>{7A794E35-665D-0F8B-CFBD-09DEBBC0F90C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RuiEngine\Debug">
+      <UniqueIdentifier>{D8032ADF-4465-07ED-CDD2-4D9F39333EAC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RuiEngine\Events">
       <UniqueIdentifier>{86D1F4C7-7260-7E91-1B7F-928C07ED8E37}</UniqueIdentifier>
     </Filter>
@@ -114,6 +117,9 @@
     <ClInclude Include="src\RuiEngine\Core\Window.h">
       <Filter>src\RuiEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\RuiEngine\Debug\Instrumentor.h">
+      <Filter>src\RuiEngine\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\RuiEngine\Events\ApplicationEvent.h">
       <Filter>src\RuiEngine\Events</Filter>
     </ClInclude>
@@ -147,10 +153,16 @@
     <ClInclude Include="src\RuiEngine\Renderer\Renderer.h">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\Renderer2D.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\RendererAPI.h">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\Shader.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\SubTexture2D.h">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\Texture.h">
@@ -1425,9 +1437,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\RuiEngine\Debug\Instrumentor.h" />
-    <ClInclude Include="src\RuiEngine\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1487,10 +1496,16 @@
     <ClCompile Include="src\RuiEngine\Renderer\Renderer.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Renderer2D.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\RendererAPI.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\Shader.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\SubTexture2D.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\Texture.cpp">
@@ -1505,7 +1520,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\RuiEngine\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

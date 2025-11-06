@@ -26,8 +26,10 @@ namespace RuiEngine {
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
-		inline Window& GetWindow() { return *m_Window; }
+		void Close();
+
 		inline static Application& Get() { return *s_Instance; }
+		inline Window& GetWindow() { return *m_Window; }
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);

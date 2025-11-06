@@ -49,6 +49,11 @@ namespace RuiEngine {
 		m_LayerStack.PushOverlay(overlay);
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	// Handle all events in this func
 	void Application::OnEvent(Event& e)
 	{
