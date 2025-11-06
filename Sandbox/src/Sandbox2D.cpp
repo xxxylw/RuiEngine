@@ -6,6 +6,24 @@
 
 #include "imgui/imgui.h"
 
+static const int s_MapWidth = 24;
+/* W(water),D(dirty), */
+static const char* s_MapTiles =
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+"WWWWWWWDDDDDDDWWWWWWWWWW"
+"WWWWDDDDDDDDDDDDDDDWWWWW"
+"WWDDDDDDDDDDDDDDDDDDDWWW"
+"WWDDDDDDDDDDDDDDDDDDWWWW"
+"WDDDDDDDDDWWWDDDDDDDDWWW"
+"WWDDDDDDDWWWWWDDDDDDDWWW"
+"WWWDDDDDWWWDWWWDDDDDWWWW"
+"WWWDDDDDDDWWWDDDDDDWWWWW"
+"WWWWDDDDDDDDDDDDDDDDDWWW"
+"WWWWWWWDDDDDDDDDDDDDDDWW"
+"WWWWWWWWWDDDDDDDDDDDWWWW"
+"WWWWWWWWWWWWWWWWWWWWWWWH"
+;
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
 {
@@ -28,9 +46,15 @@ void Sandbox2D::OnAttach()
 	m_Particle.VelocityVariation = { 0.1f, 0.05f };
 	m_Particle.Position = { 0.0f, 0.0f };
 
+	m_CameraController.SetZoomLevel(5.0f);
+
+	m_MapWidht = s_MapWidth;
+	m_MapHeight = strlen(s_MapTiles) / s_MapWidth;
+
 	m_TextureStairs = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 7, 6 }, { 128, 128 });
-	m_TextureBarrel = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8, 2 }, { 128, 128 });
 	m_TextureTree = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, {1, 2});
+	s_TextureMap['D'] = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, {6, 11}, {128, 128});
+	s_TextureMap['W'] = RuiEngine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 11, 11 }, { 128, 128 });
 }
 
 void Sandbox2D::OnDetach()
@@ -98,10 +122,27 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
 
 	RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureStairs, 1.0f);
-	RuiEngine::Renderer2D::DrawQuad({ 0.8f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureBarrel, 1.0f);
-	RuiEngine::Renderer2D::DrawQuad({ -0.8f, 1.0f, 0.3f }, { 0.5f, 1.0f }, m_TextureTree, 1.0f);
+	for (uint32_t y = 0; y < m_MapHeight; y++)
+	{
+		for (uint32_t x = 0; x < m_MapWidht; x++)
+		{
+			char tileType = s_MapTiles[x + y * m_MapWidht];
+			RuiEngine::Ref<RuiEngine::SubTexture2D> texture;
+			if (s_TextureMap.find(tileType) != s_TextureMap.end())
+				texture = s_TextureMap[tileType];
+			else
+				texture = m_TextureStairs;
+
+			RuiEngine::Renderer2D::DrawQuad({(float)x - m_MapWidht / 2.0f, m_MapHeight - (y) - m_MapHeight / 2.0f, 0.5f}, {1.0f, 1.0f}, texture);
+		}
+	}
 	RuiEngine::Renderer2D::EndScene();
+
+	//RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	//RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureStairs, 1.0f);
+	//RuiEngine::Renderer2D::DrawQuad({ 0.8f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureBarrel, 1.0f);
+	//RuiEngine::Renderer2D::DrawQuad({ -0.8f, 1.0f, 0.3f }, { 0.5f, 1.0f }, m_TextureTree, 1.0f);
+	//RuiEngine::Renderer2D::EndScene();
 
 }
 
