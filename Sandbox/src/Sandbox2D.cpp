@@ -33,8 +33,13 @@ void Sandbox2D::OnAttach()
 {
 	RE_PROFILE_FUNCTION();
 
-	m_MaxVer = RuiEngine::Texture2D::Create("assets/textures/Checkerboard.png");
+	m_CheckerboardTexture = RuiEngine::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_SpriteSheet = RuiEngine::Texture2D::Create("assets/game/textures/RPGpack_sheet_2X.png");
+
+	RuiEngine::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = RuiEngine::Framebuffer::Create(fbSpec);
 
 	// Init here
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
@@ -72,6 +77,7 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 	RuiEngine::Renderer2D::ResetStats();
 	{
 		RE_PROFILE_SCOPE("Renderer Prep");
+		m_Framebuffer->Bind();
 		RuiEngine::RenderCommand::SetClearColor({ 0.2f, 0.2f, 0.2f, 1 });
 		RuiEngine::RenderCommand::Clear();
 	}
@@ -94,8 +100,8 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 	RuiEngine::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f , 0.01f}, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
 	RuiEngine::Renderer2D::DrawQuad({ -1.0f, 0.0f, 0.02f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 	RuiEngine::Renderer2D::DrawQuad({ 0.5f, -0.5f, 0.03f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-	RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, { 20.0f, 20.0f }, m_MaxVer, 10.0f);
-	RuiEngine::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.05f }, { 1.0f, 1.0f }, glm::radians(rotation), m_MaxVer, 20.0f);
+	RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, { 20.0f, 20.0f }, m_CheckerboardTexture, 10.0f);
+	RuiEngine::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.05f }, { 1.0f, 1.0f }, glm::radians(rotation), m_CheckerboardTexture, 20.0f);
 	RuiEngine::Renderer2D::EndScene();
 
 
@@ -132,13 +138,7 @@ void Sandbox2D::OnUpdate(RuiEngine::Timestep ts)
 		}
 	}
 	RuiEngine::Renderer2D::EndScene();
-
-	//RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	//RuiEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureStairs, 1.0f);
-	//RuiEngine::Renderer2D::DrawQuad({ 0.8f, 0.0f, 0.3f }, { 0.5f, 0.5f }, m_TextureBarrel, 1.0f);
-	//RuiEngine::Renderer2D::DrawQuad({ -0.8f, 1.0f, 0.3f }, { 0.5f, 1.0f }, m_TextureTree, 1.0f);
-	//RuiEngine::Renderer2D::EndScene();
-
+	m_Framebuffer->Unbind();
 }
 
 void Sandbox2D::OnImGuiRender()
@@ -218,8 +218,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_MaxVer->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 
 		ImGui::End();
@@ -237,8 +237,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_MaxVer->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 	}
 }

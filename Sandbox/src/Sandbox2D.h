@@ -24,7 +24,9 @@ private:
 	RuiEngine::Ref<RuiEngine::VertexArray> m_SquareVA;
 	RuiEngine::Ref<RuiEngine::Shader> m_FlatColorShader;
 
-	RuiEngine::Ref<RuiEngine::Texture2D> m_MaxVer;
+	RuiEngine::Ref<RuiEngine::Framebuffer> m_Framebuffer;
+
+	RuiEngine::Ref<RuiEngine::Texture2D> m_CheckerboardTexture;
 	RuiEngine::Ref<RuiEngine::Texture2D> m_SpriteSheet;
 	RuiEngine::Ref<RuiEngine::SubTexture2D> m_TextureStairs, m_TextureBarrel, m_TextureTree;
 

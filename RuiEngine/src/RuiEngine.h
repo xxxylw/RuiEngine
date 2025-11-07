@@ -22,6 +22,7 @@
 
 #include "RuiEngine/Renderer/Buffer.h"
 #include "RuiEngine/Renderer/Shader.h"
+#include "RuiEngine/Renderer/Framebuffer.h"
 #include "RuiEngine/Renderer/Texture.h"
 #include "RuiEngine/Renderer/SubTexture2D.h"
 #include "RuiEngine/Renderer/VertexArray.h"
