@@ -16,7 +16,7 @@ namespace RuiEngine {
 	class RE_API Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "RuiEngine App");
 		virtual ~Application();
 
 		void Run();

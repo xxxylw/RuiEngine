@@ -24,9 +24,11 @@ IncludeDir["ImGui"] = "RuiEngine/vendor/imgui"
 IncludeDir["glm"] = "RuiEngine/vendor/glm"
 IncludeDir["stb_image"] = "RuiEngine/vendor/stb_image"
 
-include "RuiEngine/vendor/GLFW"
-include "RuiEngine/vendor/Glad"
-include "RuiEngine/vendor/imgui"
+group "Dependencies"
+	include "RuiEngine/vendor/GLFW"
+	include "RuiEngine/vendor/Glad"
+	include "RuiEngine/vendor/imgui"
+group ""
 
 project "RuiEngine"
 	
@@ -85,6 +87,59 @@ project "RuiEngine"
 			"RE_PLATFORM_WINDOWS",
 			"RE_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
+		}
+
+	filter "configurations:Debug"
+		defines "RE_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "RE_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "RE_DIST"
+		runtime "Release"
+		optimize "on"
+
+project "RuiEngine-Editor"
+	location "RuiEngine-Editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"RuiEngine/vendor/spdlog/include",
+		"RuiEngine/src",
+		"RuiEngine/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"RuiEngine"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+		buildoptions {"/utf-8"}
+
+		defines
+		{
+			"RE_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"

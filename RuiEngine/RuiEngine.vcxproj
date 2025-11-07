@@ -624,6 +624,7 @@
     <ClCompile Include="src\RuiEngine\Core\Layer.cpp" />
     <ClCompile Include="src\RuiEngine\Core\LayerStack.cpp" />
     <ClCompile Include="src\RuiEngine\Core\Log.cpp" />
+    <ClCompile Include="src\RuiEngine\Core\Window.cpp" />
     <ClCompile Include="src\RuiEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\RuiEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp" />

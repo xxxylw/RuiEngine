@@ -63,6 +63,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -136,6 +139,9 @@
       <Filter>src\RuiEngine\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\Buffer.h">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RuiEngine\Renderer\Framebuffer.h">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\RuiEngine\Renderer\GraphicsContext.h">
@@ -1437,14 +1443,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuiEngine\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1486,6 +1493,9 @@
     <ClCompile Include="src\RuiEngine\Renderer\Buffer.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\RuiEngine\Renderer\Framebuffer.cpp">
+      <Filter>src\RuiEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\RuiEngine\Renderer\OrthographicCamera.cpp">
       <Filter>src\RuiEngine\Renderer</Filter>
     </ClCompile>
@@ -1522,7 +1532,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuiEngine\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
+    <ClCompile Include="src\RuiEngine\Core\Window.cpp" />
   </ItemGroup>
 </Project>

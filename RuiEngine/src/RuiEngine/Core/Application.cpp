@@ -13,14 +13,14 @@ namespace RuiEngine {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		RE_PROFILE_FUNCTION();
 
 		RE_CORE_ASSERT(!s_Instance, "Application alredy exists!");
 		s_Instance = this;
 
-		m_Window = RuiEngine::Scope<Window>(Window::Create());
+		m_Window = Window::Create(WindowProps(name));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(true);
 
