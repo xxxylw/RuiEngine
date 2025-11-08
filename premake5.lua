@@ -1,7 +1,7 @@
 -- premake5.lua
 workspace "RuiEngine"
 	architecture "x64"
-	startproject "Sandbox"
+	startproject "RuiEngine-Editor"
 
 	configurations
 	{

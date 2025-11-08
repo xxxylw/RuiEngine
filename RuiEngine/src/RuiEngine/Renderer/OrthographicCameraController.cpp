@@ -49,6 +49,12 @@ namespace RuiEngine {
 		dispatcher.Dispatch<WindowResizeEvent>(RE_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 
+	void OrthographicCameraController::OnResize(uint32_t width, uint32_t height)
+	{
+		m_AspectRatio = (float)width / height;
+		CalculateView();
+	}
+
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
 		RE_PROFILE_FUNCTION();
