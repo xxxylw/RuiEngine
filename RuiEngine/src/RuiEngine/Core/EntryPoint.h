@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 	app->Run();
 	RE_PROFILE_END_SESSION();
 
-	RE_PROFILE_BEGIN_SESSION("Runtime", "RuiEngineProfile-Shutdown.json");
+	RE_PROFILE_BEGIN_SESSION("Shutdown", "RuiEngineProfile-Shutdown.json");
 	delete app;
 	RE_PROFILE_END_SESSION();
 }

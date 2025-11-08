@@ -21,7 +21,10 @@ namespace RuiEngine {
 
 		void Begin();
 		void End();
+
+		void BlockEvents(bool block) { m_BlockEvnets = block; }
 	private:
+		bool m_BlockEvnets = true;
 		float m_Time = 0.0f;
 	};
 }

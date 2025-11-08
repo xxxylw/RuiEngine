@@ -35,6 +35,7 @@ namespace RuiEngine{
 	class RE_API Event {
 		friend class EventDispatcher;
 	public:
+		virtual ~Event() = default;
 		bool Handled = false;
 	public:
 		virtual EventType GetEventType() const = 0;

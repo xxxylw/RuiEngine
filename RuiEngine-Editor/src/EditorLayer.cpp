@@ -33,7 +33,8 @@ namespace RuiEngine {
 		RE_PROFILE_FUNCTION();
 
 		// Update
-		m_CameraController.OnUpdate(ts);
+		if(m_ViewportFocused)
+			m_CameraController.OnUpdate(ts);
 
 		// Render
 		RuiEngine::Renderer2D::ResetStats();
@@ -46,7 +47,7 @@ namespace RuiEngine {
 
 		{
 			static float rotation = 0.0f;
-			rotation += ts * 50.0f;
+			rotation += ts * 5.0f;
 
 			RE_PROFILE_SCOPE("Renderer Draw");
 			RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
@@ -144,7 +145,13 @@ namespace RuiEngine {
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
+
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
 		ImVec2 viewPortPanelSize = ImGui::GetContentRegionAvail();
 		if (m_ViewportSize != *(glm::vec2*)&viewPortPanelSize)
 		{
@@ -156,6 +163,7 @@ namespace RuiEngine {
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		ImGui::End();
+		ImGui::PopStyleVar();
 
 		ImGui::End();
 	}
