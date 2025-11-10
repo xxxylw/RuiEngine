@@ -23,6 +23,7 @@ IncludeDir["Glad"] = "RuiEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "RuiEngine/vendor/imgui"
 IncludeDir["glm"] = "RuiEngine/vendor/glm"
 IncludeDir["stb_image"] = "RuiEngine/vendor/stb_image"
+IncludeDir["entt"] = "RuiEngine/vendor/entt/include"
 
 group "Dependencies"
 	include "RuiEngine/vendor/GLFW"
@@ -68,6 +69,7 @@ project "RuiEngine"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -125,7 +127,8 @@ project "RuiEngine-Editor"
 		"RuiEngine/vendor/spdlog/include",
 		"RuiEngine/src",
 		"RuiEngine/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links

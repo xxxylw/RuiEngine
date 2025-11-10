@@ -19,6 +19,9 @@ namespace RuiEngine {
 	private:
 		OrthographicCameraController m_CameraController;
 
+		Ref<Scene> m_ActiveScene;
+		entt::entity m_SquareEntity;
+
 		// Temp
 		Ref<VertexArray> m_SquareVA;
 		Ref<Shader> m_FlatColorShader;

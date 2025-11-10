@@ -15,6 +15,9 @@
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
 
+#include "RuiEngine/Scene/Scene.h"
+#include "RuiEngine/Scene/Component.h"
+
 // ------Renderer---------
 #include "RuiEngine/Renderer/Renderer.h"
 #include "RuiEngine/Renderer/Renderer2D.h"
