@@ -20,7 +20,7 @@ namespace RuiEngine {
 		OrthographicCameraController m_CameraController;
 
 		Ref<Scene> m_ActiveScene;
-		entt::entity m_SquareEntity;
+		Entity m_SquareEntity;
 
 		// Temp
 		Ref<VertexArray> m_SquareVA;

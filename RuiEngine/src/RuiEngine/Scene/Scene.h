@@ -6,6 +6,8 @@
 
 namespace RuiEngine {
 
+	class Entity;
+
 	class Scene
 	{
 	public:
@@ -14,12 +16,11 @@ namespace RuiEngine {
 
 		void OnUpdate(Timestep ts);
 
-		entt::entity CreateEntity();
-
-		// Temp
-		entt::registry& Reg() { return m_Registry; }
+		Entity CreateEntity(const std::string& tag = std::string());
 
 	private:
 		entt::registry m_Registry;
+
+		friend class Entity;
 	};
 }

@@ -17,9 +17,10 @@ namespace RuiEngine {
 		RE_PROFILE_FUNCTION();
 
 		m_ActiveScene = CreateRef<Scene>();
-		m_SquareEntity = m_ActiveScene->CreateEntity();
-		m_ActiveScene->Reg().emplace<TransformComponent>(m_SquareEntity);
-		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(m_SquareEntity, glm::vec4{0.2f, 0.8f, 0.3f, 1.0f});
+
+		// Entity
+		m_SquareEntity = m_ActiveScene->CreateEntity("ECS Square");
+		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.1f, 0.6f, 0.8f, 1.0f));
 
 		m_CheckerboardTexture = RuiEngine::Texture2D::Create("assets/textures/Checkerboard.png");
 
@@ -141,8 +142,17 @@ namespace RuiEngine {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		auto& m_SquareColor = m_ActiveScene->Reg().get<SpriteRendererComponent>(m_SquareEntity).Color;
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+		if (m_SquareEntity)
+		{
+			ImGui::Separator();
+
+			auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
+			ImGui::Text("Entity Tag : %s", tag.c_str());
+			auto& m_SquareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+			ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+			ImGui::Separator();
+		}
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
