@@ -26,7 +26,7 @@ namespace RuiEngine {
 		}
 
 		template<typename T, typename... Args>
-		T& AddComponent(Args&&... args)
+		T& AddComponent(Args&&... args) // l and r value
 		{
 			RE_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
 			return m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
