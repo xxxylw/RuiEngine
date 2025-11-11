@@ -22,12 +22,18 @@ namespace RuiEngine {
 		m_SquareEntity = m_ActiveScene->CreateEntity("ECS Square");
 		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.1f, 0.6f, 0.8f, 1.0f));
 
-		m_CheckerboardTexture = RuiEngine::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_CameraEntity = m_ActiveScene->CreateEntity("A Camera");
+		m_CameraEntity.AddComponent<CameraComponent>(glm::ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f));
 
-		RuiEngine::FramebufferSpecification fbSpec;
+		m_SecondCamera = m_ActiveScene->CreateEntity("B Camera");
+		m_SecondCamera.AddComponent<CameraComponent>(glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f));
+
+		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
+
+		FramebufferSpecification fbSpec;
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
-		m_Framebuffer = RuiEngine::Framebuffer::Create(fbSpec);
+		m_Framebuffer = Framebuffer::Create(fbSpec);
 	}
 
 	void EditorLayer::OnDetach()
@@ -35,12 +41,12 @@ namespace RuiEngine {
 		RE_PROFILE_FUNCTION();
 	}
 
-	void EditorLayer::OnUpdate(RuiEngine::Timestep ts)
+	void EditorLayer::OnUpdate(Timestep ts)
 	{
 		RE_PROFILE_FUNCTION();
 
 		// Resize
-		if (RuiEngine::FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
 			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
@@ -54,19 +60,14 @@ namespace RuiEngine {
 
 
 		// Render
-		RuiEngine::Renderer2D::ResetStats();
+		Renderer2D::ResetStats();
 
 		m_Framebuffer->Bind();
-		RuiEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-		RuiEngine::RenderCommand::Clear();
-
-
-		RuiEngine::Renderer2D::BeginScene(m_CameraController.GetCamera());
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::Clear();
 
 		// Update Scene
 		m_ActiveScene->OnUpdate(ts);
-
-		RuiEngine::Renderer2D::EndScene();
 
 		m_Framebuffer->Unbind();
 	}
@@ -127,7 +128,7 @@ namespace RuiEngine {
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-				if (ImGui::MenuItem("Exit")) RuiEngine::Application::Get().Close();
+				if (ImGui::MenuItem("Exit")) Application::Get().Close();
 				ImGui::EndMenu();
 			}
 
@@ -135,7 +136,7 @@ namespace RuiEngine {
 		}
 
 		ImGui::Begin("Settings");
-		auto stats = RuiEngine::Renderer2D::GetStats();
+		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 		ImGui::Text("Quads: %d", stats.QuadCount);
@@ -153,6 +154,16 @@ namespace RuiEngine {
 
 			ImGui::Separator();
 		}
+
+		ImGui::DragFloat3("Camera Transform",
+			glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+
+		if (ImGui::Checkbox("A Camera", &m_PrimaryCamera) )
+		{
+			m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
+			m_SecondCamera.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
+		}
+
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
@@ -172,7 +183,7 @@ namespace RuiEngine {
 		ImGui::End();
 	}
 
-	void EditorLayer::OnEvent(RuiEngine::Event& e)
+	void EditorLayer::OnEvent(Event& e)
 	{
 		m_CameraController.OnEvent(e);
 	}

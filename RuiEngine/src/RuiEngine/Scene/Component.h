@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "RuiEngine/Renderer/Camera.h"
+
 namespace RuiEngine {
 
 	struct TagComponent
@@ -35,5 +37,17 @@ namespace RuiEngine {
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color)
 			: Color(color) {}
+	};
+
+	struct CameraComponent
+	{
+		RuiEngine::Camera Camera;
+		bool Primary = true; // TODO: think about moving to Scene
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& projection)
+			: Camera(projection) {
+		}
 	};
 }

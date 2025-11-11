@@ -9,3 +9,8 @@ bin-int/
 /Sandbox/*.json
 
 **/RuiEngineProfile-*.json
+
+/RuiEngine/*.vcxproj
+/RuiEngine/*.vcxproj.filters
+
+/RuiEngine-Editor/*.ini

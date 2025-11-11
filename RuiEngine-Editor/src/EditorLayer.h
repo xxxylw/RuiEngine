@@ -21,6 +21,10 @@ namespace RuiEngine {
 
 		Ref<Scene> m_ActiveScene;
 		Entity m_SquareEntity;
+		Entity m_CameraEntity;
+		Entity m_SecondCamera;
+
+		bool m_PrimaryCamera = true;
 
 		// Temp
 		Ref<VertexArray> m_SquareVA;
