@@ -1,7 +1,7 @@
 #pragma once
 
 #include <entt.hpp>
-#include "RuiEngine/Scene/Component.h"
+
 #include "RuiEngine/Core/Timestep.h"
 
 namespace RuiEngine {

@@ -17,6 +17,7 @@
 
 #include "RuiEngine/Scene/Scene.h"
 #include "RuiEngine/Scene/Entity.h"
+#include "RuiEngine/Scene/ScriptableEntity.h"
 #include "RuiEngine/Scene/Component.h"
 
 // ------Renderer---------

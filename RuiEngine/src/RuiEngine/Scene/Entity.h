@@ -4,7 +4,6 @@
 #include "entt.hpp"
 
 namespace RuiEngine {
-
 	class Entity
 	{
 	public:

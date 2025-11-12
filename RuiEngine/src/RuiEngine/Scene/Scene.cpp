@@ -1,9 +1,12 @@
 #include "repch.h"
 #include "Scene.h"
+
+#include "RuiEngine/Scene/Component.h"
 #include "RuiEngine/Renderer/Renderer2D.h"
-#include "Entity.h"
 
 #include <glm/glm.hpp>
+
+#include "Entity.h"
 
 namespace RuiEngine {
 
@@ -76,6 +79,21 @@ namespace RuiEngine {
 
 	void Scene::OnUpdate(Timestep ts)
 	{
+		// Update scripts
+		m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
+			{
+				if (!nsc.Instance)
+				{
+					nsc.InstantiateFunction();
+					nsc.Instance->m_Entity = Entity{ entity, this };
+
+					if (nsc.OnCreateFunction)
+						nsc.OnCreateFunction(nsc.Instance);
+				}
+				if (nsc.OnUpdateFunction)
+					nsc.OnUpdateFunction(nsc.Instance, ts);
+			});
+
 		// Render 2D
 		Camera* mainCamera = nullptr;
 		glm::mat4* cameraTransform = nullptr;
