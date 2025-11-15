@@ -1,5 +1,5 @@
 #include "repch.h"
-#include "Framebuffer.h"
+#include "RuiEngine/Renderer/Framebuffer.h"
 
 #include "Platform/OpenGL/OpenGLFramebuffer.h"
 #include "RuiEngine/Renderer/Renderer.h"
