@@ -28,7 +28,11 @@ namespace RuiEngine {
 		m_SecondCamera = m_ActiveScene->CreateEntity("B Camera");
 		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
 		cc.Primary = false;
-		
+
+		auto redSquare = m_ActiveScene->CreateEntity("Red Square");
+		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4( 0.8f, 0.3f, 0.5f , 1.0f));
+		auto& transform = redSquare.GetComponent<TransformComponent>().Transform;
+		transform = glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.0f));
 
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 

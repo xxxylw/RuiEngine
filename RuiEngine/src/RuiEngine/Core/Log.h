@@ -20,12 +20,11 @@ namespace RuiEngine {
 }
 
 // Core log macros
-#define RE_PROFILE 1
 #define RE_CORE_ERROR(...)	::RuiEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define RE_CORE_WARN(...)	::RuiEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define RE_CORE_INFO(...)	::RuiEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define RE_CORE_TRACE(...)	::RuiEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define RE_CRITICAL(...)	::RuiEngine::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define RE_CORE_CRITICAL(...)	::RuiEngine::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define RE_ERROR(...)		::RuiEngine::Log::GetClientLogger()->error(__VA_ARGS__)
