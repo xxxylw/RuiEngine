@@ -17,12 +17,13 @@ namespace RuiEngine {
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
 		virtual void OnEvent(Event& e) override;
-		virtual void OnImGuiRender() override;
 
 		void Begin();
 		void End();
 
 		void BlockEvents(bool block) { m_BlockEvnets = block; }
+
+		void SetDarkThemeColors();
 	private:
 		bool m_BlockEvnets = true;
 		float m_Time = 0.0f;
