@@ -485,7 +485,7 @@ namespace RuiEngine {
 		memset(&s_Data.Stats, 0, sizeof(Statistics));
 	}
 
-	RuiEngine::Renderer2D::Statistics Renderer2D::GetStats()
+	Renderer2D::Statistics Renderer2D::GetStats()
 	{
 		return s_Data.Stats;
 	}
