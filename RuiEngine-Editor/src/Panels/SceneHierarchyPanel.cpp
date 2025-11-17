@@ -8,82 +8,6 @@
 
 namespace RuiEngine {
 
-	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
-	{
-		SetContext(context);
-	}
-
-	void SceneHierarchyPanel::SetContext(const Ref<Scene>& context)
-	{
-		m_Context = context;
-	}
-
-	void SceneHierarchyPanel::OnImGuiRender()
-	{
-		ImGui::Begin("Scene Hierarchy");
-
-		// 这里我们要遍历所有entity，但是api不像Cherno那里写的了，得View<>，然后我又不想出现entt::entity，所以就view<TagComponent>，TagComponent是所有Entity都有的
-		for (auto entityID : m_Context->m_Registry.view<TagComponent>())
-		{
-			Entity entity{ entityID, m_Context.get() };
-			DrawEntityNode(entity);
-		}
-
-		if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
-			m_SelectionContext = {};
-
-		// Right Click on blank space
-		if (ImGui::BeginPopupContextWindow(0, 1, false))
-		{
-			if (ImGui::MenuItem("Create Entity"))
-				m_Context->CreateEntity("Empty Entity");
-			ImGui::EndPopup();
-		}
-
-		ImGui::End();
-
-		ImGui::Begin("Properties");
-
-		if (m_SelectionContext)
-		{
-			DrawComponents(m_SelectionContext);
-		}
-
-		ImGui::End();
-	}
-
-	void SceneHierarchyPanel::DrawEntityNode(Entity entity)
-	{
-		auto& tag = entity.GetComponent<TagComponent>().Tag;
-
-		ImGuiTreeNodeFlags flags = ((m_SelectionContext == entity) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
-		flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
-		bool opened = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)entity, flags, tag.c_str());
-		if (ImGui::IsItemClicked())
-		{
-			m_SelectionContext = entity;
-		}
-
-		bool entityDeleted = false;
-		if (ImGui::BeginPopupContextItem())
-		{
-			if (ImGui::MenuItem("Delete Entity"))
-				entityDeleted = true;
-			ImGui::EndPopup();
-		}
-
-		if (opened)
-		{
-			ImGui::TreePop();
-		}
-		if (entityDeleted)
-		{
-			m_Context->DestroyEntity(entity);
-			if (m_SelectionContext == entity)
-				m_SelectionContext = {};
-		}
-	}
-
 	static void DrawVec3Control(const std::string& label, glm::vec3& values, float resetValue = 0.0f, float columnWidth = 100.0f)
 	{
 		ImGuiIO& io = ImGui::GetIO();
@@ -189,6 +113,84 @@ namespace RuiEngine {
 				entity.RemoveComponent<T>();
 		}
 	}
+
+	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
+	{
+		SetContext(context);
+	}
+
+	void SceneHierarchyPanel::SetContext(const Ref<Scene>& context)
+	{
+		m_Context = context;
+	}
+
+	void SceneHierarchyPanel::OnImGuiRender()
+	{
+		ImGui::Begin("Scene Hierarchy");
+
+		// 这里我们要遍历所有entity，但是api不像Cherno那里写的了，得View<>，然后我又不想出现entt::entity，所以就view<TagComponent>，TagComponent是所有Entity都有的
+		for (auto entityID : m_Context->m_Registry.view<TagComponent>())
+		{
+			Entity entity{ entityID, m_Context.get() };
+			DrawEntityNode(entity);
+		}
+
+		if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+			m_SelectionContext = {};
+
+		// Right Click on blank space
+		if (ImGui::BeginPopupContextWindow(0, 1, false))
+		{
+			if (ImGui::MenuItem("Create Entity"))
+				m_Context->CreateEntity("Empty Entity");
+			ImGui::EndPopup();
+		}
+
+		ImGui::End();
+
+		ImGui::Begin("Properties");
+
+		if (m_SelectionContext)
+		{
+			DrawComponents(m_SelectionContext);
+		}
+
+		ImGui::End();
+	}
+
+	void SceneHierarchyPanel::DrawEntityNode(Entity entity)
+	{
+		auto& tag = entity.GetComponent<TagComponent>().Tag;
+
+		ImGuiTreeNodeFlags flags = ((m_SelectionContext == entity) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+		flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
+		bool opened = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)entity, flags, tag.c_str());
+		if (ImGui::IsItemClicked())
+		{
+			m_SelectionContext = entity;
+		}
+
+		bool entityDeleted = false;
+		if (ImGui::BeginPopupContextItem())
+		{
+			if (ImGui::MenuItem("Delete Entity"))
+				entityDeleted = true;
+			ImGui::EndPopup();
+		}
+
+		if (opened)
+		{
+			ImGui::TreePop();
+		}
+		if (entityDeleted)
+		{
+			m_Context->DestroyEntity(entity);
+			if (m_SelectionContext == entity)
+				m_SelectionContext = {};
+		}
+	}
+
+
 
 	void SceneHierarchyPanel::DrawComponents(Entity entity)
 	{
