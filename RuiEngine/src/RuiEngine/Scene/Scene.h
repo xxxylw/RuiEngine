@@ -20,6 +20,7 @@ namespace RuiEngine {
 
 		Entity CreateEntity(const std::string& tag = std::string());
 
+		Entity GetPrimaryCameraEntity();
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);

@@ -20,6 +20,7 @@ project "RuiEngine-Editor"
 		"%{wks.location}/RuiEngine/vendor",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links

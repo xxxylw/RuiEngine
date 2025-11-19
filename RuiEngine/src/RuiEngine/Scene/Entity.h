@@ -8,7 +8,7 @@ namespace RuiEngine {
 	{
 	public:
 		Entity() = default;
-		Entity(Entity&) = default;
+		Entity(const Entity& other) = default;
 		Entity(entt::entity entity, Scene* scene);
 
 		template<typename T>

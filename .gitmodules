@@ -13,3 +13,6 @@
 [submodule "RuiEngine/vendor/yaml-cpp"]
 	path = RuiEngine/vendor/yaml-cpp
 	url = https://github.com/TheCherno/yaml-cpp
+[submodule "RuiEngine/vendor/ImGuizmo"]
+	path = RuiEngine/vendor/ImGuizmo
+	url = https://github.com/TheCherno/ImGuizmo
