@@ -246,7 +246,7 @@ namespace RuiEngine {
 			glm::mat4 transform = tc.GetTransform();
 
 			// Snapping
-			bool snap = Input::IsKeyPressed(RE_KEY_LEFT_CONTROL);
+			bool snap = Input::IsKeyPressed(Key::LeftControl);
 			float snapValue = 0.5f; // Snap to 0.5m for translation/scale
 			// Snap to 45 degrees for rotation
 			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
@@ -291,23 +291,23 @@ namespace RuiEngine {
 		if (e.GetRepeatCount() > 0)
 			return false;
 
-		bool control = Input::IsKeyPressed(RE_KEY_LEFT_CONTROL) || Input::IsKeyPressed(RE_KEY_RIGHT_CONTROL);
-		bool shift = Input::IsKeyPressed(RE_KEY_LEFT_SHIFT) || Input::IsKeyPressed(RE_KEY_RIGHT_SHIFT);
+		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
+		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
 		switch (e.GetKeyCode())
 		{
-			case RE_KEY_N :
+		case Key::N :
 			{
 				if (control)
 					NewScene();
 				break;
 			}
-			case RE_KEY_O:
+		case Key::O:
 			{
 				if (control)
 					OpenScene();
 				break;
 			}
-			case RE_KEY_S:
+		case Key::S:
 			{
 				if (control && shift)
 					SaveSceneAs();
@@ -315,16 +315,16 @@ namespace RuiEngine {
 			}
 
 			// Gizmos
-			case RE_KEY_Q :
+		case Key::Q :
 				m_GizmoType = -1;
 				break;
-			case RE_KEY_W :
+		case Key::W :
 				m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
 				break;
-			case RE_KEY_E :
+		case Key::E :
 				m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 				break;
-			case RE_KEY_R:
+		case Key::R:
 				m_GizmoType = ImGuizmo::OPERATION::SCALE;
 				break;
 		}

@@ -9,8 +9,8 @@
 #include "RuiEngine/Core/Timestep.h"
 
 #include "RuiEngine/Core/Input.h"
-#include "RuiEngine/Core/KeyCode.h"
-#include "RuiEngine/Core/MouseButtonCode.h"
+#include "RuiEngine/Core/KeyCodes.h"
+#include "RuiEngine/Core/MouseCodes.h"
 #include "RuiEngine/Renderer/OrthographicCameraController.h"
 
 #include "RuiEngine/ImGui/ImGuiLayer.h"
