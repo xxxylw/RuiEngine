@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Event.h"
+#include "RuiEngine/Events/Event.h"
 #include "RuiEngine/Core/MouseCodes.h"
+#include <sstream>
 
 namespace RuiEngine {
 	class MouseMovedEvent : public Event

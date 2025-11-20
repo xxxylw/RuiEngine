@@ -2,6 +2,7 @@
 
 #include "RuiEngine.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "RuiEngine/Renderer/EditorCamera.h"
 
 namespace RuiEngine {
 
@@ -34,6 +35,8 @@ namespace RuiEngine {
 		Entity m_SecondCamera;
 
 		bool m_PrimaryCamera = true;
+
+		EditorCamera m_EditorCamera;
 
 		// Temp
 		Ref<VertexArray> m_SquareVA;

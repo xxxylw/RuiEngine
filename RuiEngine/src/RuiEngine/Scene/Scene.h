@@ -3,6 +3,7 @@
 #include <entt.hpp>
 
 #include "RuiEngine/Core/Timestep.h"
+#include "RuiEngine/Renderer/EditorCamera.h"
 
 namespace RuiEngine {
 
@@ -14,7 +15,8 @@ namespace RuiEngine {
 		Scene();
 		~Scene();
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
 		void DestroyEntity(Entity entity);
 

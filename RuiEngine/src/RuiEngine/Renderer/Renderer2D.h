@@ -3,6 +3,7 @@
 #include "RuiEngine/Renderer/Texture.h"
 #include "RuiEngine/Renderer/SubTexture2D.h"
 #include "RuiEngine/Renderer/Camera.h"
+#include "RuiEngine/Renderer/EditorCamera.h"
 
 namespace RuiEngine {
 	class Renderer2D
@@ -11,6 +12,7 @@ namespace RuiEngine {
 		static void Init();
 		static void Shutdown();
 
+		static void BeginScene(const EditorCamera& camera);
 		static void BeginScene(const Camera& camera, const glm::mat4& transform);
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
@@ -49,5 +51,9 @@ namespace RuiEngine {
 		static Statistics GetStats();
 	private:
 		static void FlushAndReset();
+
+	private:
+		static void StartBatch();
+		static void NextBatch();
 	};
 }
