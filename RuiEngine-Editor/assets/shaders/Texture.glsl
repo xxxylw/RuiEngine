@@ -33,7 +33,7 @@ void main()
 #version 330 core
 
 layout(location = 0) out vec4 color;
-layout(location = 1) out vec4 color2;
+layout(location = 1) out int entityID;
 
 in vec4 v_Color;
 in vec2 v_TexCoord;
@@ -60,5 +60,5 @@ void main()
 	// color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TilingFactor) * v_Color;
 	color = texColor;
 
-	color2 = vec4(0.8f, 0.3f, 0.3f, 1.0f);
+	entityID = 50; // placeholder for our entity ID
 }
