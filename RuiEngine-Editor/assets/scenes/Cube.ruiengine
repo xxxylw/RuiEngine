@@ -45,3 +45,21 @@ Entities:
         OrthographicFar: 1
       Primary: true
       FixedAspectRatio: false
+  - Entity: 123456789
+    TagComponent:
+      Tag: Wall
+    TransformComponent:
+      Translation: [0.299999952, 0, -2]
+      Rotation: [0, 0, 0]
+      Scale: [32.5923767, 12, 1]
+    SpriteRendererComponent:
+      Color: [0.814671814, 0.814663649, 0.814663649, 1]
+  - Entity: 123456789
+    TagComponent:
+      Tag: Floor
+    TransformComponent:
+      Translation: [-0.0616515875, -1.04161918, 0.315266728]
+      Rotation: [1.61322761, 0, 0]
+      Scale: [20.4169369, 15.536355, 5.16039991]
+    SpriteRendererComponent:
+      Color: [0.463320434, 0.463315785, 0.463315785, 1]

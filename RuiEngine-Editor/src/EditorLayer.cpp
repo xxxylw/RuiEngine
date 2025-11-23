@@ -23,6 +23,7 @@ namespace RuiEngine {
 		RE_PROFILE_FUNCTION();
 
 		FramebufferSpecification fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
@@ -170,7 +171,7 @@ namespace RuiEngine {
 
 		ImVec2 viewPortPanelSize = ImGui::GetContentRegionAvail();
 		m_ViewportSize = { viewPortPanelSize.x, viewPortPanelSize.y };
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(0);
 		ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		
 		// Gizmos
