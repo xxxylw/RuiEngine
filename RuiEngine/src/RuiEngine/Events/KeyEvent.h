@@ -5,7 +5,7 @@
 
 
 namespace RuiEngine {
-	class RE_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		KeyCode GetKeyCode() const { return m_KeyCode; }

@@ -9,11 +9,10 @@
 
 namespace RuiEngine {
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name)
+	Application::Application(const std::string& name, ApplicationCommandLineArgs args)
+		: m_CommandLineArgs(args)
 	{
 		RE_PROFILE_FUNCTION();
 
@@ -21,7 +20,7 @@ namespace RuiEngine {
 		s_Instance = this;
 
 		m_Window = Window::Create(WindowProps(name));
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(RE_BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(true);
 
 		Renderer::Init();
@@ -60,8 +59,8 @@ namespace RuiEngine {
 		RE_PROFILE_FUNCTION();
 
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(RE_BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(RE_BIND_EVENT_FN(OnWindowResize));
 		
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{

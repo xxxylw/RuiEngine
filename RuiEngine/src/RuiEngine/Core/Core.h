@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "RuiEngine/Core/Assert.h"
+
 #ifdef _WIN32
 	#ifdef _WIN64
 		#define RE_PLATFORM_WINDOWS
@@ -23,15 +25,8 @@
 	#define RE_DEBUGBREAK()
 #endif // RE_DEBUG
 
-#ifdef RE_ENABLE_ASSERTS
-	#define RE_ASSERT(x, ...) { if(!(x)) { RE_ERROR("Assertion Failed: {0}", __VA_ARGS__); RE_DEBUGBREAK(); } }
-	#define RE_CORE_ASSERT(x, ...) { if(!(x)) { RE_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); RE_DEBUGBREAK(); } }
-#else
-	#define RE_ASSERT(x, ...)
-	#define RE_CORE_ASSERT(x, ...)
-#endif // RE_ENABLE_ASSERTS
-
-
+#define RE_EXPAND_MACRO(x) x
+#define RE_STRINGIFY_MACRO(x) #x
 
 #ifdef RE_PLATFORM_WINDOWS
 	#if RE_DYNAMIC_LINK
@@ -48,7 +43,7 @@
 #endif
 
 #define BIT(x) (1 << x)
-//#define RE_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
 #define RE_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 
 namespace RuiEngine {

@@ -4,11 +4,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "RuiEngine/Scene/SceneSerializer.h"
-
-#include "RuiEngine/Utils/PlatformUtils.h"
-
 #include <ImGuizmo.h>
+
+#include "RuiEngine/Scene/SceneSerializer.h"
+#include "RuiEngine/Utils/PlatformUtils.h"
 #include "RuiEngine/Math/Math.h"
 
 namespace RuiEngine {
@@ -29,6 +28,15 @@ namespace RuiEngine {
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
 		m_ActiveScene = CreateRef<Scene>();
+
+		auto commandLineArgs = Application::Get().GetCommandLineArgs();
+		if (commandLineArgs.Count > 1)
+		{
+			auto sceneFilePath = commandLineArgs[1];
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Deserialize(sceneFilePath);
+		}
+
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 	}

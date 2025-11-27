@@ -1,4 +1,7 @@
 -- premake5.lua
+
+include "Dependencies.lua"
+
 workspace "RuiEngine"
 	architecture "x64"
 	startproject "RuiEngine-Editor"
@@ -16,16 +19,6 @@ workspace "RuiEngine"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-
-IncludeDir = {}
-IncludeDir["GLFW"] = "%{wks.location}/RuiEngine/vendor/GLFW/include"
-IncludeDir["Glad"] = "%{wks.location}/RuiEngine/vendor/Glad/include"
-IncludeDir["ImGui"] = "%{wks.location}/RuiEngine/vendor/imgui"
-IncludeDir["glm"] = "%{wks.location}/RuiEngine/vendor/glm"
-IncludeDir["stb_image"] = "%{wks.location}/RuiEngine/vendor/stb_image"
-IncludeDir["entt"] = "%{wks.location}/RuiEngine/vendor/entt/include"
-IncludeDir["yaml_cpp"] = "%{wks.location}/RuiEngine/vendor/yaml-cpp/include"
-IncludeDir["ImGuizmo"] = "%{wks.location}/RuiEngine/vendor/ImGuizmo"
 
 group "Dependencies"
 	include "RuiEngine/vendor/GLFW"

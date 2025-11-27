@@ -4,18 +4,14 @@
 #include "RuiEngine/Core/EntryPoint.h"
 // -----------------------
 
-#include "Platform/OpenGL/OpenGLShader.h"
-
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include "imgui/imgui.h"
-
 #include "EditorLayer.h"
 namespace RuiEngine {
-	class RuiEngineEditor : public RuiEngine::Application {
+	class RuiEngineEditor : public RuiEngine::Application
+	{
 	public:
-		RuiEngineEditor() {
+		RuiEngineEditor(ApplicationCommandLineArgs args)
+			: Application("Hazelnut", args)
+		{
 			//PushLayer(new ExampleLayer());
 			PushLayer(new EditorLayer());
 		}
@@ -25,7 +21,8 @@ namespace RuiEngine {
 		}
 	};
 
-	Application* CreateApplication() {
-		return new RuiEngineEditor();
+	Application* CreateApplication(ApplicationCommandLineArgs args)
+	{
+		return new RuiEngineEditor(args);
 	}
 }

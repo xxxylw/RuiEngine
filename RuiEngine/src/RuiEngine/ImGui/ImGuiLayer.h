@@ -8,7 +8,7 @@
 
 namespace RuiEngine {
 
-	class RE_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
@@ -26,6 +26,5 @@ namespace RuiEngine {
 		void SetDarkThemeColors();
 	private:
 		bool m_BlockEvnets = true;
-		float m_Time = 0.0f;
 	};
 }
