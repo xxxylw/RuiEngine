@@ -2,6 +2,7 @@
 
 #include "RuiEngine.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 #include "RuiEngine/Renderer/EditorCamera.h"
 
 namespace RuiEngine {
@@ -58,6 +59,7 @@ namespace RuiEngine {
 
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
+		ContentBrowserPanel m_ContentBrowserPanel;
 	};
 
 }
