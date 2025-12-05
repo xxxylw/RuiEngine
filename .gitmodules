@@ -16,3 +16,6 @@
 [submodule "RuiEngine/vendor/ImGuizmo"]
 	path = RuiEngine/vendor/ImGuizmo
 	url = https://github.com/TheCherno/ImGuizmo
+[submodule "RuiEngine/vendor/Box2D"]
+	path = RuiEngine/vendor/Box2D
+	url = https://github.com/TheCherno/box2d

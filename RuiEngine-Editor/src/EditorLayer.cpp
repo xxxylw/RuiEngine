@@ -81,8 +81,8 @@ namespace RuiEngine {
 		{
 			case RuiEngine::EditorLayer::SceneState::Edit:
 			{
-				if (m_ViewportFocused)
-					m_CameraController.OnUpdate(ts);
+				//if (m_ViewportFocused)
+				//	m_CameraController.OnUpdate(ts);
 				m_EditorCamera.OnUpdate(ts);
 				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 				break;
@@ -313,38 +313,50 @@ namespace RuiEngine {
 		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
 		switch (e.GetKeyCode())
 		{
-		case Key::N :
-			{
-				if (control)
-					NewScene();
-				break;
-			}
-		case Key::O:
-			{
-				if (control)
-					OpenScene();
-				break;
-			}
-		case Key::S:
-			{
-				if (control && shift)
-					SaveSceneAs();
-				break;
-			}
+			case Key::N :
+				{
+					if (control)
+						NewScene();
+					break;
+				}
+			case Key::O:
+				{
+					if (control)
+						OpenScene();
+					break;
+				}
+			case Key::S:
+				{
+					if (control && shift)
+						SaveSceneAs();
+					break;
+				}
 
-			// Gizmos
-		case Key::Q :
-				m_GizmoType = -1;
+				// Gizmos
+			case Key::Q :
+			{
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = -1;
 				break;
-		case Key::W :
-				m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
+			}
+			case Key::W :
+			{
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
 				break;
-		case Key::E :
-				m_GizmoType = ImGuizmo::OPERATION::ROTATE;
+			}
+			case Key::E :
+			{
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 				break;
-		case Key::R:
-				m_GizmoType = ImGuizmo::OPERATION::SCALE;
+			}
+			case Key::R:
+			{
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::OPERATION::SCALE;
 				break;
+			}
 		}
 	}
 
@@ -374,12 +386,19 @@ namespace RuiEngine {
 
 	void EditorLayer::OpenScene(const std::filesystem::path& path)
 	{
-		m_ActiveScene = CreateRef<Scene>();
-		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-
-		SceneSerializer serializer(m_ActiveScene);
-		serializer.Deserialize(path.string());
+		if (path.extension().string() != ".ruiengine")
+		{
+			RE_WARN("Could not load {0} - not a scene file", path.filename().string());
+			return;
+		}
+		Ref<Scene> newScene = CreateRef<Scene>();
+		SceneSerializer serializer(newScene);
+		if (serializer.Deserialize(path.string()))
+		{
+			m_ActiveScene = newScene;
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+		}
 	}
 
 	void EditorLayer::SaveSceneAs()
@@ -395,11 +414,13 @@ namespace RuiEngine {
 	void EditorLayer::OnScenePlay()
 	{
 		m_SceneState = SceneState::Play;
+		m_ActiveScene->OnRuntimeStart();
 	}
 
 	void EditorLayer::OnSceneStop()
 	{
 		m_SceneState = SceneState::Edit;
+		m_ActiveScene->OnRuntimeStop();
 	}
 
 	void EditorLayer::UI_Toolbar()

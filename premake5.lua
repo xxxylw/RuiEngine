@@ -25,6 +25,7 @@ group "Dependencies"
 	include "RuiEngine/vendor/Glad"
 	include "RuiEngine/vendor/imgui"
 	include "RuiEngine/vendor/yaml-cpp"
+	include "RuiEngine/vendor/Box2D"
 group ""
 
 include "RuiEngine"

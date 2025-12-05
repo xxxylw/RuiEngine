@@ -1,9 +1,11 @@
 #pragma once
 
-#include <entt.hpp>
-
 #include "RuiEngine/Core/Timestep.h"
 #include "RuiEngine/Renderer/EditorCamera.h"
+
+#include <entt.hpp>
+
+class b2World;
 
 namespace RuiEngine {
 
@@ -20,6 +22,9 @@ namespace RuiEngine {
 		void OnViewportResize(uint32_t width, uint32_t height);
 		void DestroyEntity(Entity entity);
 
+		void OnRuntimeStart();
+		void OnRuntimeStop();
+
 		Entity CreateEntity(const std::string& tag = std::string());
 
 		Entity GetPrimaryCameraEntity();
@@ -30,6 +35,8 @@ namespace RuiEngine {
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
+
+		b2World* m_PhysicsWorld = nullptr;
 
 		friend class Entity;
 		friend class SceneSerializer;
