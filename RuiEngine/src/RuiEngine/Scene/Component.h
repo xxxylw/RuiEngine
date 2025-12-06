@@ -1,16 +1,26 @@
 #pragma once
 
+#include "RuiEngine/Scene/SceneCamera.h"
+#include "RuiEngine/Core/UUID.h"
+#include "RuiEngine/Renderer/Texture.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
 
-#include "RuiEngine/Scene/SceneCamera.h"
-#include "RuiEngine/Scene/ScriptableEntity.h"
-#include "RuiEngine/Renderer/Texture.h"
+
 
 namespace RuiEngine {
+
+	struct IDComponent
+	{
+		UUID ID;
+
+		IDComponent() = default;
+		IDComponent(const IDComponent&) = default;
+	};
 
 	struct TagComponent
 	{
@@ -64,6 +74,8 @@ namespace RuiEngine {
 		CameraComponent(const CameraComponent&) = default;
 	};
 
+	// Forward declaration
+	class ScriptableEntity;
 	struct NativeScriptComponent
 	{
 		ScriptableEntity* Instance = nullptr;

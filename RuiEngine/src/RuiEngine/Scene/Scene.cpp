@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 #include "RuiEngine/Scene/Component.h"
+#include "RuiEngine/Scene/ScriptableEntity.h"
 #include "RuiEngine/Renderer/Renderer2D.h"
 
 #include <glm/glm.hpp>
@@ -43,10 +44,16 @@ namespace RuiEngine {
 
 	Entity Scene::CreateEntity(const std::string& name /*= std::string()*/)
 	{
+		return CreateEntityWithUUID(UUID(), name);
+	}
+
+	Entity Scene::CreateEntityWithUUID(UUID uuid, const std::string& name)
+	{
 		Entity entity = { m_Registry.create(), this };
+		entity.AddComponent<IDComponent>(uuid);
 		entity.AddComponent<TransformComponent>();
 		auto& tag = entity.AddComponent<TagComponent>();
-		tag.Tag = name.empty() ? "Unknown Entity" : name;
+		tag.Tag = name.empty() ? "Entity" : name;
 		return entity;
 	}
 
@@ -199,12 +206,6 @@ namespace RuiEngine {
 		m_PhysicsWorld = nullptr;
 	}
 
-	template<typename T>
-	void Scene::OnComponentAdded(Entity entity, T& component)
-	{
-		static_assert(false);
-	}
-
 	RuiEngine::Entity Scene::GetPrimaryCameraEntity()
 	{
 		auto view = m_Registry.view<CameraComponent>();
@@ -215,6 +216,17 @@ namespace RuiEngine {
 				return Entity{ entity, this };
 		}
 		return {};
+	}
+
+	template<typename T>
+	void Scene::OnComponentAdded(Entity entity, T& component)
+	{
+		//static_assert(false);
+	}
+
+	template<>
+	void Scene::OnComponentAdded<IDComponent>(Entity entity, IDComponent& component)
+	{
 	}
 
 	template<>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RuiEngine/Core/Timestep.h"
+#include "RuiEngine/Core/UUID.h"
 #include "RuiEngine/Renderer/EditorCamera.h"
 
 #include <entt.hpp>
@@ -25,7 +26,8 @@ namespace RuiEngine {
 		void OnRuntimeStart();
 		void OnRuntimeStop();
 
-		Entity CreateEntity(const std::string& tag = std::string());
+		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 
 		Entity GetPrimaryCameraEntity();
 	private:
