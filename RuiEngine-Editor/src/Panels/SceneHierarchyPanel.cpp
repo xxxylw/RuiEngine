@@ -131,22 +131,25 @@ namespace RuiEngine {
 	{
 		ImGui::Begin("Scene Hierarchy");
 
-		// 这里我们要遍历所有entity，但是api不像Cherno那里写的了，得View<>，然后我又不想出现entt::entity，所以就view<TagComponent>，TagComponent是所有Entity都有的
-		for (auto entityID : m_Context->m_Registry.view<TagComponent>())
+		if (m_Context)
 		{
-			Entity entity{ entityID, m_Context.get() };
-			DrawEntityNode(entity);
-		}
+			// 这里我们要遍历所有entity，但是api不像Cherno那里写的了，得View<>，然后我又不想出现entt::entity，所以就view<TagComponent>，TagComponent是所有Entity都有的
+			for (auto entityID : m_Context->m_Registry.view<IDComponent>())
+			{
+				Entity entity{ entityID, m_Context.get() };
+				DrawEntityNode(entity);
+			}
 
-		if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
-			m_SelectionContext = {};
+			if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+				m_SelectionContext = {};
 
-		// Right Click on blank space
-		if (ImGui::BeginPopupContextWindow(0, 1, false))
-		{
-			if (ImGui::MenuItem("Create Entity"))
-				m_Context->CreateEntity("Empty Entity");
-			ImGui::EndPopup();
+			// Right Click on blank space
+			if (ImGui::BeginPopupContextWindow(0, 1, false))
+			{
+				if (ImGui::MenuItem("Create Entity"))
+					m_Context->CreateEntity("Empty Entity");
+				ImGui::EndPopup();
+			}
 		}
 
 		ImGui::End();
