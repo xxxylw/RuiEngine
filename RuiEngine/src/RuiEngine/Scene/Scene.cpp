@@ -88,6 +88,7 @@ namespace RuiEngine {
 		// Copy components (except IDComponent and TagComponent)
 		CopyComponent<TransformComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<SpriteRendererComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<CircleRendererComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<CameraComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<NativeScriptComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<Rigidbody2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
@@ -119,6 +120,7 @@ namespace RuiEngine {
 
 		CopyComponentIfExists<TransformComponent>(newEntity, entity);
 		CopyComponentIfExists<SpriteRendererComponent>(newEntity, entity);
+		CopyComponentIfExists<CircleRendererComponent>(newEntity, entity);
 		CopyComponentIfExists<CameraComponent>(newEntity, entity);
 		CopyComponentIfExists<NativeScriptComponent>(newEntity, entity);
 		CopyComponentIfExists<Rigidbody2DComponent>(newEntity, entity);
@@ -183,6 +185,7 @@ namespace RuiEngine {
 		{
 			Renderer2D::BeginScene(*mainCamera, cameraTransform);
 
+#pragma region draw sprites
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group)
 			{
@@ -190,6 +193,17 @@ namespace RuiEngine {
 
 				Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
 			}
+#pragma endregion
+
+#pragma region draw circles
+			auto view = m_Registry.view<TransformComponent, CircleRendererComponent>();
+			for (auto entity : view)
+			{
+				auto [transform, circle] = view.get<TransformComponent, CircleRendererComponent>(entity);
+
+				Renderer2D::DrawCircle(transform.GetTransform(), circle.Color, circle.Thickness, circle.Fade, (int)entity);
+			}
+#pragma endregion
 
 			Renderer2D::EndScene();
 		}
@@ -199,6 +213,7 @@ namespace RuiEngine {
 	{
 		Renderer2D::BeginScene(camera);
 
+#pragma region draw sprites
 		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 		for (auto entity : group)
 		{
@@ -206,6 +221,17 @@ namespace RuiEngine {
 
 			Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
 		}
+#pragma endregion
+
+#pragma region draw circles
+		auto view = m_Registry.view<TransformComponent, CircleRendererComponent>();
+		for (auto entity : view)
+		{
+			auto [transform, circle] = view.get<TransformComponent, CircleRendererComponent>(entity);
+
+			Renderer2D::DrawCircle(transform.GetTransform(), circle.Color, circle.Thickness, circle.Fade, (int)entity);
+		}
+#pragma endregion
 
 		Renderer2D::EndScene();
 	}
@@ -312,6 +338,11 @@ namespace RuiEngine {
 
 	template<>
 	void Scene::OnComponentAdded<SpriteRendererComponent>(Entity entity, SpriteRendererComponent& component)
+	{
+	}
+
+	template<>
+	void Scene::OnComponentAdded<CircleRendererComponent>(Entity entity, CircleRendererComponent& component)
 	{
 	}
 
