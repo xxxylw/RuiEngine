@@ -1,4 +1,7 @@
-// Basic Texture Shader
+//--------------------------
+// - Hazel 2D -
+// Renderer2D Quad Shader
+// --------------------------
 
 #type vertex
 #version 450 core
@@ -39,8 +42,8 @@ void main()
 #type fragment
 #version 450 core
 
-layout(location = 0) out vec4 color;
-layout(location = 1) out int entityID;
+layout(location = 0) out vec4 o_Color;
+layout(location = 1) out int o_EntityID;
 
 struct VertexOutput
 {
@@ -70,8 +73,6 @@ void main()
 		case  6: texColor *= texture(u_Textures[6], Input.TexCoord * Input.TilingFactor); break;
 		case  7: texColor *= texture(u_Textures[7], Input.TexCoord * Input.TilingFactor); break;
 	}
-	// color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TilingFactor) * v_Color;
-	color = texColor;
-
-	entityID = v_EntityID;
+	o_Color = texColor;
+	o_EntityID = v_EntityID;
 }

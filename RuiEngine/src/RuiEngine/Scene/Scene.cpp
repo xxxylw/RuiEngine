@@ -232,7 +232,6 @@ namespace RuiEngine {
 			Renderer2D::DrawCircle(transform.GetTransform(), circle.Color, circle.Thickness, circle.Fade, (int)entity);
 		}
 #pragma endregion
-
 		Renderer2D::EndScene();
 	}
 
