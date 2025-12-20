@@ -101,7 +101,7 @@ namespace RuiEngine {
 					}
 					case GLFW_REPEAT:
 					{
-						KeyReleasedEvent event(key);
+						KeyPressedEvent event(key, true);
 						data.EventCallback(event);
 						break;
 					}
