@@ -73,6 +73,10 @@ void main()
 		case  6: texColor *= texture(u_Textures[6], Input.TexCoord * Input.TilingFactor); break;
 		case  7: texColor *= texture(u_Textures[7], Input.TexCoord * Input.TilingFactor); break;
 	}
+
+	if (texColor.a == 0.0)
+		discard;
+
 	o_Color = texColor;
 	o_EntityID = v_EntityID;
 }

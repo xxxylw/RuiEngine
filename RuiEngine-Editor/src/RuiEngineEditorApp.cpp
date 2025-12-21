@@ -15,10 +15,6 @@ namespace RuiEngine {
 			//PushLayer(new ExampleLayer());
 			PushLayer(new EditorLayer());
 		}
-
-		~RuiEngineEditor() {
-
-		}
 	};
 
 	Application* CreateApplication(ApplicationCommandLineArgs args)

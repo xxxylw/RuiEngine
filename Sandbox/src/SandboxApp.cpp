@@ -31,7 +31,7 @@ RuiEngine::Application* RuiEngine::CreateApplication(RuiEngine::ApplicationComma
 {
 	ApplicationSpecification spec;
 	spec.Name = "Sandbox";
-	spec.WorkingDirectory = "../Hazelnut";
+	spec.WorkingDirectory = "../RuiEngine-Editor";
 	spec.CommandLineArgs = args;
 
 	return new Sandbox(spec);
