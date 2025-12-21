@@ -4,6 +4,7 @@
 #include "Input.h"
 
 #include "RuiEngine/Renderer/Renderer.h"
+#include "RuiEngine/Utils/PlatformUtils.h"
 
 #include <GLFW/glfw3.h>
 
@@ -11,15 +12,19 @@ namespace RuiEngine {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name, ApplicationCommandLineArgs args)
-		: m_CommandLineArgs(args)
+	Application::Application(const ApplicationSpecification& specification)
+		: m_Specification(specification)
 	{
 		RE_PROFILE_FUNCTION();
 
 		RE_CORE_ASSERT(!s_Instance, "Application alredy exists!");
 		s_Instance = this;
 
-		m_Window = Window::Create(WindowProps(name));
+		// Set working directory here
+		if (!m_Specification.WorkingDirectory.empty())
+			std::filesystem::current_path(m_Specification.WorkingDirectory);
+
+		m_Window = Window::Create(WindowProps(m_Specification.Name));
 		m_Window->SetEventCallback(RE_BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(true);
 
@@ -78,7 +83,7 @@ namespace RuiEngine {
 		{
 			RE_PROFILE_SCOPE("Run Loop");
 
-			float time = (float)glfwGetTime(); // For Temporary Platform::GetTime()
+			float time = Time::GetTime();
 			Timestep timestep = time - m_LasetFrameTime;
 			m_LasetFrameTime = time;
 

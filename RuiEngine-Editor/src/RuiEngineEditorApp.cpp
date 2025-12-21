@@ -9,8 +9,8 @@ namespace RuiEngine {
 	class RuiEngineEditor : public RuiEngine::Application
 	{
 	public:
-		RuiEngineEditor(ApplicationCommandLineArgs args)
-			: Application("Hazelnut", args)
+		RuiEngineEditor(const ApplicationSpecification& spec)
+			: Application(spec)
 		{
 			//PushLayer(new ExampleLayer());
 			PushLayer(new EditorLayer());
@@ -23,6 +23,10 @@ namespace RuiEngine {
 
 	Application* CreateApplication(ApplicationCommandLineArgs args)
 	{
-		return new RuiEngineEditor(args);
+		ApplicationSpecification spec;
+		spec.Name = "RuiEngineEditor";
+		spec.CommandLineArgs = args;
+
+		return new RuiEngineEditor(spec);
 	}
 }

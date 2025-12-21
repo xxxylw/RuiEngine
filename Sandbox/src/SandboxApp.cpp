@@ -15,7 +15,9 @@
 
 class Sandbox : public RuiEngine::Application {
 public:
-	Sandbox() {
+	Sandbox(const RuiEngine::ApplicationSpecification& specification)
+		: RuiEngine::Application(specification)
+	{
 		//PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());
 	}
@@ -25,6 +27,12 @@ public:
 	}
 };
 
-RuiEngine::Application* RuiEngine::CreateApplication() {
-	return new Sandbox();
+RuiEngine::Application* RuiEngine::CreateApplication(RuiEngine::ApplicationCommandLineArgs args)
+{
+	ApplicationSpecification spec;
+	spec.Name = "Sandbox";
+	spec.WorkingDirectory = "../Hazelnut";
+	spec.CommandLineArgs = args;
+
+	return new Sandbox(spec);
 }
