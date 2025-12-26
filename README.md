@@ -52,6 +52,4 @@ both as a learning platform and a foundation for future extensions.
 
 ---
 
-## 🧩 Engine Structure
-
 
